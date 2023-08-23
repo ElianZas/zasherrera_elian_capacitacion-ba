@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!--le indicamos al navegador que el lenguaje que usaremos
+será español-->
+  <head>
+    <!--Acá colocaremos todas aquellas etiquetas que tengan relación con
+  la configuración de nuestro sitio, por ejemplo, los caracteres que soportará, el título
+de nuestra página, los links externos para usar fuentes, íconos, animaciones, etc-->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Se hará una Landing Page utilizando HTML semantico y propiedades de CSS.
+    Cada sección será maquetada, construida, a traves del metodo Flexbox o Grid con 
+    el fin de practicar y repasar ambos.-->
+    <title>Borcelle Pastelería&Panadería</title>
+    <!-- Nombre de la tienda -->
+    <!--Al cambiar el nombre de la etiqueta TITLE podremos identificar de forma sencilla
+    en qué html nos encontramos y también para aquellas personas que entren a nuestra
+    página será más fácil identificar qué sección de nuestra página están visualizando-->
+    <!--Incorporamos los links de las fuentes externas que queremos usar en nuestro sitio
+    a través de la etiqueta LINK-->
+    <link
+      href="https://fonts.cdnfonts.com/css/the-amsterdam"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <!--A través de la etiqueta LINK vinculamos nuestra hoja html (maquetado de nuestra página) con 
+    la hoja de estilos "reset". Esta elminará los valores predeterminados que contiene por defecto nuestro 
+    documento HTML-->
+    <!--REL determina el tipo de vínculo que estamos realizándo, en este caso queremos vincularlo con una hojas de estilos
+    que van a intervenir en nuestro html.
+    HREF es en donde colocaremos la ruta en dónde se encuentra ese archivo css,
+    recomendable utilizar "./" ya que de lo contrario podríamos tener problemas a futuro-->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- Hacemos lo mismo que antes, pero ahora vinculamos con nuestra hoja de estilos 
+    donde le daremos "vida", desde cambiar colores de texto hastcambiar los tamaños de las secciones
+    de nuestra página entre otras cosas-->
+  </head>
+  <body>
+    <!--Etiqueta BODY, esta etiqueta represeta el cuerpo de nuestro sitio web, 
+  contendrá todo el resto de etiquetas, elementos, que usemos. Si realizamos alguna
+modificación al body se aplicará a toda la página, a menos que le demos identificadores
+a cada etiqueta de tipo  CLASS o ID.
+Cuando empecemos a darle color y otras propiedades empezaremos a "llamar" a los atributos que
+hayamos usado para identificar a cada una de ellas que queramos personalizar. 
+ID-El atributo ID NO se puede reutilizar, solo se usa una vez por etiqueta y el nombre
+de este no puede ser igual a otro. Se escribe con un # adelante del nombre.
+CLASS-El atributo CLASS se puede reutilizar todas las veces que deseemos, podemos
+darle un color a los botones y reutilizarla en todos los botones que lleven esas propiedades.
+Si queremos cambiar y hacer las clases para cada etiqueta personalizadas debemos cambiar
+su nombre. Se escribe con un . adelante del nombre-->
+    <!-- Etiqueta HEADER: es el encabezado de nuestra Landing Page, lo primero que aparecerá en la página en la parte superior de la misma.
+    Generalmente en esta podemos encontrar un menú de navegación , logo, espacio de busqueda, etc. -->
+    <header id="header">
+      <!--ID, colocamos un Identificador único, para luego refereciarlo en otra parte. Ej: un botón al final de nuestra página que nos regrese al Header al hacer click-->
+      <nav class="nav contenedor">
+        <!-- Etiqueta Nav: generalmente se usa para darle al usuario enlaces para que navegue por nuestra web  es como
+        si le dieramos un índice así como aparece en los libros para ir a la sección que más le interese en ese momento.
+        Tenemos un claro ejemplo en Youtube, vemos un menú al costado izquierdo donde podemos hacer click e ir a
+        Inicio, Shorts, nuestro historia, etc.-->
+        <a href="#nav-menu" class="nav-menu-abre">
+          <!--A, se usa para indicar que lo que contenga esta etiqueta tendrá un comportamiento de tipo link,
+          es decir, al hacer click se activará alguna acción. Ej: llevarnos a otra página, despliegue de un aviso, reproducción de un video (play), etc.-->
+          <img
+            src="./assets/list.svg"
+            id="icono-menu"
+            alt="icono-hamburguesa-menu"
+          />
+          <!--IMG, etiqueta utilizara para colocar imágenes en distintos formatos: png, svg, jpg. Es importante
+          siempre colocar una descripción (qué se ve en la imágen) en la atributo ALT. Le colocamos el ID icono-menu para
+          luego en css darle un estilo general a todos los íconos de este tipo-->
+          <!--Ícono del menú, debe ser clicleable para que al presionarlo se desplegue el índice de nuestra página, por lo cual lo contenemos dentro de una etiqueta A-->
+        </a>
+        <!--En este caso contenemos un ícono dentro de la etiqueta A, porque necesitamos que al hacer click ocurra una
+        acción (despliegue del menú), la cual se terminará en javascript-->
+        <a href="#" class="nav-menu-cierra"
+          ><!--A través de este link al hacer click en el ícono que contiene se cerrará nuestro menú desplegado-->
+          <img src="./assets/x.svg" id="icono-menu" alt="icono-x-menu" />
+        </a>
+        <a href="./index.html" target="_blank" class="nav-logo"
+          ><!--Contenemos el logo dentro de un link para hacerlo que al hacer click regresemos a la página principal, nuestro index en este caso
+          Para indicar en nuestro HTML la ruta a la que debe ir cuando hagamos click en el logo, tenemos que escribirla
+          dentro de la atributo HREF-->
+          <img
+            src="./images/2-logo-negro.png"
+            class="img-logo"
+            alt="BorcellepanaderiaypasteleriaLogoNegro"
+          />
+        </a>
+        <!-- Para tener una estructura ordenada en nuestro menú, necesitamos una lista como mencionamos antes un índice.
+          Necesitamos que contenga: un ícono del menu, un logo, y otro icono de bolsa de compra.
+          Para esto usaremos la etiqueta UL. Esta etiqueta representa a las listas NO ordenadas, y la usamos
+          porque, en este caso, no es relevante el orden de nuestros links y no necesitamos que se muestren numerados (1,2,3...)-->
+        <ul class="nav-menu-indice">
+          <!-- Etiqueta LI. Sería como una etiqueta hija y corresponde que vaya acompañada de su etiqueta padre UL.
+          La etiqueta padre funcionará como contenedor de la lista(lienzo o papel donde está el indice de un libro) 
+          y los elementos representarían cada título.
+          Como necesitamos que al hacer click en alguno de los titulos nos lleve a otra parte de la pagina, 
+          entonces hay "contener" esos títulos dentro de una etiqueta A.-->
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="#" target="_blank">Productos</a></li>
+          <li><a href="#" target="_blank">Servicios</a></li>
+          <li><a href="#" target="_blank">Productos</a></li>
+          <li><a href="#" target="_blank">Nosotros</a></li>
+        </ul>
+        <a href="#" class="nav-menu-carrito">
+          <img
+            src="./assets/bag.svg"
+            id="icono-menu"
+            alt="icono-carrito-menu"
+          />
+        </a>
+        <!--A través de este link al hacer click en el ícono que contiene nos llevará a otra sección para mostrarnos el contenido de nuestro carrito de compras-->
+      </nav>
+    </header>
+    <!-- Luego del Header, haremos nuestra seccion MAIN.  -->
+    <!--Etiqueta MAIN, en ella colocamos todo el contenido que consideremos
+      que es lo más importante de nuestra Landing Page, es decir, aquello que queremos que el usuario
+      vea y capte su atención.
+      En este caso colocaremos una muestra de productos, algo asi como una exhibición de productos.-->
+    <!--Sección PRINCIPAL de MUESTRA DE PRODUCTOS-->
+    <main class="muestra-productos">
+      <!--Sección en donde habrá un banner que da el aviso de que existe actualmente
+      una oferta-->
+      <section class="muestra-banner-ofertas">
+        <h2>¡Mirá nuestras promos! 30% OFF</h2>
+      </section>
+      <!--imagen de fondo-->
+      <section class="muestra-logo">
+        <img src="./images/2-logo-negro.png" class="muestra-img-logo" alt="" />
+      </section>
+      <!-- Dentro de nuestra etiqueta main entinces pondremos etiquetas SECTION.
+      Etiqueta SECTION. Como su nombre lo indica representa las secciones qur tiene una pagina web.
+      Podemos usarla dentro del main como por fuera tambien para subdividr nuestro contenido principal,
+      y el resto del contenido de la página-->
+      <h1 class="muestra-titulo-producto">Frambuesa Tentadora</h1>
+      <!--Etiqueta H1, existen varias etiquetas para nuestros
+      títulos o subtítulos, y van del H1 al H6. En este caso, en H1 colocaremos el texto que sea más importante de 
+      nuestra página-->
+      <section class="card-productos" id="carousel-productos">
+        <!--Etiqueta ARTICLE. Con esta etiqueta podemos segmentar nuestra caja section, 
+          en cajas más pequeñas. Así como cuando vemos una noticia que tiene artículos.
+        En este caso colocamos nuestra tarjeta circular donde irá el contenido principal
+        de nuestra sección de muestra de productos.-->
+        <article class="card-principal">
+          <div class="muestra-circulo"></div>
+          <!--Etiqueta DIV. Así como mencionamos que la etiqueta
+          section sirve para dividir el contenido de la etiqueta main o contenido general de la página, 
+          la etiqueta div nos ayuda a subdividir otras etiquetas, como section o article. 
+          Imaginemoslo como cajas principales que necesitan ser subdivididas, por lo que no sería recomendable
+          subdividir una etiqueta section con otra section.-->
+          <!-- En esta caso se usa para poder dibujar luego con css, círculos que contendran la imagen del producto
+         principal que necesitamos mostrar.-->
+        </article>
+        <!--Queremos que muestre miniaturas de los productos para que al hacer click se muestren en nuestra tarjeta
+        principal anterior. Elegimos usar la etiqueta OL.
+        Esta etiqueta contiene un índice como la etiqueta UL. Pero la diferencia es que esta lista es ordenada.
+        En este caso, nos interesa que esté ordenada, para más adelante con JS, podamos darle la funcionalidad
+        de que cuando se haga click en el primer elemento nos muestre esa imágen en la card principal, cuando se haga
+        click en la segunda lo mismo, etc.-->
+        <ol class="cards-miniaturas">
+          <li>
+            <a href="" class="card-cupcake-1">
+              <img class="cupcake" src="./images/cupcake-frutilla.png" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="" class="card-cupcake-2">
+              <img class="cupcake" src="./images/cupcake-oreo.png" alt="" />
+            </a>
+          </li>
+          <li>
+            <a href="" class="card-cupcake-3">
+              <img class="cupcake" src="./images/cupcake-surtido.png" alt="" />
+            </a>
+          </li>
+        </ol>
+        <!--Contenemos la descripción de nuestro producto dentro de un div, para luego poder
+        darle algunas propiedades personalizadas solo a este elemento como por ej un tamaño y ancho 
+        fijo para la vista desktop. De lo contrario se adapará al resto de las propieades de los elementos
+        anteriores y en este caso no es lo que queremos-->
+        <div class="card-productos-descripcion">
+          <p>
+            Sumérgete en la irresistible tentación de nuestro cupcake de
+            Frambuesa Tentación, una creación sublime que combina la frescura de
+            las frambuesas con el placer indulgente de un suave y esponjoso
+            bizcocho. Este capricho culinario te llevará a un mundo de sabores
+            exquisitos y sensaciones deleitosas.
+          </p>
+        </div>
+        <!--Creamos un botón de compra-->
+        <!--Etiqueta button. Podemos darle un tipo de comportamiento,
+        en este caso será de tipo "button". Lo contenemos dentro de una etiqueta
+        A para que se pueda interactuar con él aunque tenga estilos predeterminados-->
+        <a href="" class="contenedor-boton">
+          <button type="button" class="button comprar">COMPRAR</button></a
+        >
+      </section>
+    </main>
+    <!--Hacemos una sección que va a servir para dividir la sección principal
+    de la siguiente sección donde habrán OFERTAS-->
+    <section class="imagendecorativa">
+      <!--Colocamos las imágenes que usaremos para esta sección, no las contendremos
+      en otro elemento porque queremos lograr que una de ellas se superponga por debajo
+      de la otra por lo que habrá que retocar la que corresponda en CSS-->
+      <img
+        class="imagen"
+        src="./images/general-panaderia.jpg"
+        alt="fotografía de panadería, vista general de tartas con frutillas y facturas surtidas"
+      />
+      <!--colocamos primero esta imágen para que quede por debajo luego de la otra al darle estilos con css-->
+      <img
+        class="division"
+        src="./images/background-divisor.png"
+        alt="imagen de cupcakes de distintos sabores"
+      />
+    </section>
+    <h2 class="secciones-titulo ofertas">Ofertas</h2>
+    <!--Usamos la etiqueta H2 para darle una jerarquía menos
+    que la etiqueta H1, pero la posicionamos en esta ya que son los títulos de cada sección de nuestra web.-->
+    <!--SECCIÓN OFERTAS DE PRODUCTOS-->
+    <section class="seccion-ofertas" id="ofertassection">
+      <!--Construimos las cards donde se mostrarán los productos en oferta, luego copiamos y pegamos
+      solo modirficando el atribtuto SRC Y ALT. Para cambiar de imágen y descripción-->
+      <article class="card-ofertas-contenedor">
+        <!--contenedor de la card ofertas-->
+        <div class="imagen-oferta">
+          <!--imagen del producto con su titulo-->
+          <img
+            class="img-torta-1"
+            src="./images/tortaAtrTitulo.png"
+            alt="Tota ATR con salsa de chocolate y bombones por encima, color beige amarronado"
+          />
+          <img class="img-torta-1" src="./images/tortaAtrImagen.png" alt="" />
+        </div>
+        <div class="card-colores">
+          <!--muestra de colores-->
+          <div class="card-muestra-color" id="tortaAtr1"></div>
+          <div class="card-muestra-color" id="tortaAtr1"></div>
+        </div>
+        <div class="precio-oferta">
+          <!--precio antes y después-->
+          <h4>Torta Atr</h4>
+          <h5>$5000</h5>
+          <!--oferta-->
+          <h6>$6000</h6>
+          <!--antes-->
+        </div>
+        <div class="boton-contenedor-agregar">
+          <!--boton para agregar al "carrito", en este caso bolsa-->
+          <button type="button" class="button agregar"></button>
+        </div>
+      </article>
+      <article class="card-ofertas-contenedor">
+        <div class="imagen-oferta">
+          <img class="img-torta-1" src="./images/tortaAtrTitulo.png" alt="" />
+          <img class="img-torta-1" src="./images/tortaAtrImagen.png" alt="" />
+        </div>
+        <div class="card-colores">
+          <div class="card-muestra-color" id="tortaAtr1"></div>
+          <div class="card-muestra-color" id="tortaAtr1"></div>
+        </div>
+        <div class="precio-oferta">
+          <h4>Torta Atr</h4>
+          <h5>$5000</h5>
+          <h6>$6000</h6>
+        </div>
+        <div class="boton-contenedor-agregar">
+          <button type="button" class="button agregar"></button>
+        </div>
+      </article>
+      <article class="card-ofertas-contenedor">
+        <div class="imagen-oferta">
+          <img class="img-torta-1" src="./images/tortaAtrTitulo.png" alt="" />
+          <img class="img-torta-1" src="./images/tortaAtrImagen.png" alt="" />
+        </div>
+        <div class="card-colores">
+          <div class="card-muestra-color" id="tortaAtr1"></div>
+          <div class="card-muestra-color" id="tortaAtr1"></div>
+        </div>
+        <div class="precio-oferta">
+          <h4>Torta Atr</h4>
+          <h5>$5000</h5>
+          <h6>$6000</h6>
+        </div>
+        <div class="boton-contenedor-agregar">
+          <button type="button" class="button agregar"></button>
+        </div>
+      </article>
+      <!--repetimos nuestra etiqueta article donde tenemos
+      el contenido principal de esta seccion ya que tendrán 
+      las mismas características en cuanto a tamaño. Luego se pueden 
+      cambiar las imágenes que contienen-->
+    </section>
+    <h2 class="secciones-titulo ingredientes">Nuestros Ingredientes</h2>
+    <section class="seccion-nuestrosIngredientes">
+      <!--Usamos nuevamente la etiqueta article para crear "artículos", son el contenido
+        principal de nuestra sección Ingredientes. Podemos aplicar las mismas propiedades a todos
+        por lo que tendrá dos nombres en su clase. Uno nos servirá para reiterarlo en cada artículo, así
+        cada uno adoptará las características aplicadas a esa clase. Y el otro nombre nos servirá en caso de querer
+        darle alguna característica más personalizada. Esto nos servirá para ahorrar código y agilizar
+        el trabajo-->
+      <article class="ing frescura">
+        <h3>Frescura Destacada</h3>
+        <p>
+          Trabajamos con proveedores locales para ofrecerte ingredientes frescos
+          y vibrantes, desde jugosas frutas hasta granos aromáticos.
+        </p>
+      </article>
+      <article class="ing tradicional">
+        <h3>Artesanía Tradicional</h3>
+        <p>
+          Nuestros panes y pasteles reflejan la autenticidad de la artesanía
+          culinaria, utilizando técnicas tradicionales y recetas probadas.
+        </p>
+      </article>
+      <article class="ing responsable">
+        <h3>Dulzura Responsable</h3>
+        <!--Ponemos los títulos dentro de la etiqueta
+        H3 no son igual de importantes que los títulos que dividen cada sección, bajamos 
+      un nivel en la jerarquía del texto-->
+        <p>
+          Nos preocupamos por la sostenibilidad, eligiendo ingredientes de
+          manera consciente para cuidarte a ti y al medio ambiente.
+        </p>
+      </article>
+    </section>
+    <h2 class="secciones-titulo redes">Redes</h2>
+    <!--Sección REDES-->
+    <section class="seccion-redes" id="redessection">
+      <!--En este caso colocaremos imágenes en formato SVG, 
+        este formato mantiene la calidad y no se pixela, es decir no se verá "borroso" en caso
+        de que queramos aumentar su tamaño.
+        Contendremos estas imágenes dentro de la etiqueta A, para hacer interactiva
+        a cada una. En CSS definiremos bien cómo haremos esto visible y perceptible para el usuario-->
+      <a class="iconos-redes" href="">
+        <!--Los elementos SVG, pueden contener ya clases, para modificarlo, entre otros valores, esta es otra
+        manera de colocar un ícono o imágen-->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#1877f2"
+          class="bi bi-facebook"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
+          />
+        </svg>
+      </a>
+      <a href="" class="iconos-redes">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#d43089"
+          class="bi bi-instagram"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+          />
+        </svg>
+      </a>
+      <a href="" class="iconos-redes">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#25d366"
+          class="bi bi-whatsapp"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+          />
+        </svg>
+      </a>
+    </section>
+    <!--Sección NEWSLETTER-->
+    <section class="form-newsletter" id="newslettersection">
+      <!--FORMULARIO NEWSLETTER SUSCRIBETE-->
+      <!--Usaremos la etiqueta FORM.
+        Esta etiqueta refiere a los formularios que podamos llegar a tener en nuestra
+        página web. Podemos tener varios pero no pueden estar anidados, es decir, uno
+        dentro de otro. 
+        Sus atributos son ACTION Y METHOD.
+        Dentro de ACTION le indicaremos qué tipo de acción va a hacer
+        nuestro formulario. Por ejemplo, que nos envíe el contenido 
+        a nuestro email.
+        Si queremos que este formulario se envía a un correo, tendríamos que escribir
+        action: mailto:borcellepasteleriaypanaderia@correo.com. 
+
+        Pero también se puede colocar el url de una página externa 
+        que nos permita recopilar los datos recibidos y hacer que lleguen
+        a nosotros. Estos datos serán procesados, por otra entidad
+        que se encargará de enviarnos esos datos de forma automática al email que
+        hayamos indicado.
+
+        Se puede administrar con una base de datos para no depender de otro sitio
+        pero eso ya es parte del backend.
+
+        Dentro de METHOD le indicamos al formulario de qué manera va a ser
+        enviado ese formulario. Puede ser a través de dos formas, GET o POST.
+
+        Si elegimos GET,  al presionar el botón enviar, los datos ingresados
+        estarán visbles para el usuario, ya que utilizará como método de envío nuestra URL.
+        Ejemplo: http:www.borcellepasteleriapanaderia.com/action.url?nombre=elian&apellidos1=zas.
+        Si elegimos POST estos datos no serán visibles para el usuario. 
+        Generalmente se usa GET para configurar páginas (filtros, búsquedas, etc) y POST
+        para enviar datos.
+      -->
+      <!--En este caso usamos otro proveedor llamado Formspree, que procesará la información
+        ingresada, el email, y nos llegará a nuestro propio mail.
+      Es importante colocar los atibutos name, id, y type, ya que estos atributos
+    son conectados con esos nombres a la entidad indicada, si no están no podrá procesar 
+  los datos-->
+      <form
+        class="form-contenedor"
+        action="https://formspree.io/f/mlekqgby"
+        id="suscribete-borcelle"
+        method="POST"
+      >
+        <h2 class="suscribete-titulo">¡Suscríbete a nuestro Newsletter!</h2>
+        <span>Sorpresas y dulces noticias te esperan</span>
+        <input
+          class="input-email"
+          name="Email"
+          id="email"
+          type="email"
+          placeholder="dejanos tu email"
+        />
+        <!--El atributo type controla que el email tenga la estructura correspondiente,
+          de lo contrario saltará un aviso.
+          ID- es usado para darle un comporamiento a un elemento, al ser un identificador
+          único no afectará a otros a menos que tengan el mismo nombre.
+          NAME- se usa para identificar el dato ingresado, el contenido.
+        -->
+        <input class="button form-enviar" type="submit" value="SUSCRIBETE" />
+        <!--etiqueta INPUT sirve para darle un indicarle al elemento que necesitamos que
+          tome un dato, que ingrese un valor x al hacer click, en este caso
+          cuando se suscriba ingresará el valor "suscribete"-->
+      </form>
+    </section>
+    <!--Logo en color para separar la sección anterior del footer-->
+    <section class="logo-color">
+      <img
+        src="./images/logo-color.png"
+        class="img-logo-color"
+        alt="BorcellePasteleriaypanaderiaLogo"
+      />
+    </section>
+    <!--SECCION FOOTER-->
+    <!--Etiqueta FOOTER, representa el final de nuestra página, el pie de esta.-->
+    <!--Posicionaremos otro menú de navegación dentro del footer, 
+    que no es igual que el menú del encabezado o header, aunque se repitan algunos
+    títulos. Sino que funciona como un mapa de nuestro sitio, en donde el usuario puede encontrar otras apartados
+    de nuestra Landing page, como por ejemplo "Preguntas frecuentes"-->
+    <footer class="footer-mapa-de-sitio" id="newslettersection">
+      <nav class="nav-contenedor-mapa">
+        <h3>Navegación</h3>
+        <!--Utilizamos denuevo la idea de una lista NO ordenada-->
+        <!--Le damos una misma clase a todos los elementos li, ya que aplicaremos 
+        las mismas propiedades a todas ellas-->
+        <ul class="nav-mapa-lista">
+          <!--contiene nuestra lista-->
+          <li class="link-nav"><a href="./index.html">Inicio</a></li>
+          <li class="link-nav"><a href="#">Productos</a></li>
+          <li class="link-nav"><a href="#">Servicios</a></li>
+          <li class="link-nav"><a href="#">Nosotros</a></li>
+          <li class="link-nav"><a href="#">Métodos de envío</a></li>
+          <li class="link-nav"><a href="#">Preguntas frecuentes</a></li>
+        </ul>
+        <article class="nav-contactanos">
+          <!--dividimos el índice del footer con la etiqueta article-->
+          <h3>Contactanos</h3>
+          <h4>Donde encontrarnos</h4>
+          <p><span>Avenida siempre viva</span>, 1234</p>
+          <!--usamos la etiquea span para resaltar una parte del contenido de la etiqueta
+          P.La etiqueta P se usa para párrafos o frases-->
+        </article>
+        <article class="nav-horarios">
+          <h3>Horarios</h3>
+          <p>L a V de 10 a 15 y de 17 a 21</p>
+          <!--Etiqueta IFRAME
+            Nos permite ver otra página dentro de la nuestra, delimitada por un marco.
+            Podemos usarla cuando queramos colocar un mapa, como ahora, o también para
+            colocar un video, música, de una plataforma externa.-->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d52545.540377240955!2d-58.5287040462579!3d-34.60172697738172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1692564017183!5m2!1ses!2sar"
+            width="300"
+            height="250"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </article>
+      </nav>
+      <!--Incorporamos un botón para que el usuario pueda regresar al header de nuestra
+      página al hacer click de forma instantanea, sin tener que hacer scroll-->
+      <a href="#header" class="button subir">
+        <img src="./assets/arrow-up.svg" alt="flecha hacia arriba" />
+      </a>
+    </footer>
+  </body>
+</html>
