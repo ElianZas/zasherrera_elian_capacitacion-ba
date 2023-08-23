@@ -1,0 +1,647 @@
+/*Mobile First*/
+/*Le asignaremos un color de fondo 
+al cuerpo de la página y color predeterminado a todo el texto que contenga. Sin embargo, 
+si le damos a un texto otro color, el color indicado en el body será reemplazado.
+Esto es porque CSS tiene un comportamiento de estilo CASCADA. 
+En otras palabras, los elementos siguientes al anterior si tienen la misma propiedad
+reemplazarán al anterior.
+Pero esto se puede controlar a través de las clases e IDS que explicamos anteriormente en nuestro INDEX.
+Algo importante a destacar es que estos SELECTORES tiene distinto nivel de especificidad:
+Una clase tiene una jerarquía más alta que una etiqueta
+Un ID tiene una jerarquía más alta que una clase
+Teniendo esto en cuenta el orden no afectará:
+.id{
+  color:rojo;
+}
+.class{
+  color:azul;
+}
+Si le asignamos una propiedad a un elemento usando un ID, y luego
+a ese mismo le cambiamos la propiedad usando una class, el ID
+prevalecerá por encima de la clase. Quedará de color rojo.
+*/
+
+/*Se utilizará tanto FLEXBOX COMO GRID*/
+/*Flexbox nos ayudará a crear contendores flexibles, y cuando lo apliquemos hará que esos elementos
+se comporten como bloques, es decir, ocuparán todo el espacio disponible horizontalmente por defecto. 
+Uno de sus atributos se llama FLEX-DIRECITON, y este es por defecto de tipo ROW. 
+Pero se puede cambiar. 
+Si cambiamos flex-direction a COLUMN, align items alineara los items de izquierda a derecha y 
+justify-contet de arriba hacia abajo.*/
+
+body {
+  color: #121212;
+  background: #ffede5;
+}
+/*Determinamos la fuente que utilizaremos para las etiquetas P que se encuentren en el documento HTML*/
+p {
+  font-family: poppins;
+  line-height: 130%; /*Controlamos el espaciado vertical existente en el elemento texto*/
+}
+
+/*HEADER-MENÚ DE NAVEGACIÓN*/
+/*Como dentro de la etiqueta NAV están contenidos,
+el logo e íconos del menú de navegación, 
+todas las propiedades que queramos
+darle de forma general a esta sección (ej: color, tamaño, alineación de elementos, etc), las aplicaremos
+a esta etiqueta a través del nombre su respectiva clase.*/
+.nav.contenedor {
+  z-index: 1; /*Z index sirve para darle prioridad a los elementos, que se vean
+  por encima de otros sin cambiarlo de lugar. Cuando no queremos que se superpongan elementos, 
+  le colocamos un numero que representará que uno tiene más valor que otro, y el que tenga más valor cubrirá al otro
+  En este caso se usa para poder reflejar la propiedad box shadow, ya que de lo contrario no se vería*/
+  position: relative; /*va acompañado de la propiedad relative*/
+  padding: 16px; /*espacio interno del nuestro nav*/
+  height: 48px; /*altura*/
+  background-color: #ffede5; /*color de fondo*/
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /*sombreado*/
+  display: grid; /*GRID, propiedad que nos sirve para posicionar a los elementos
+  dentro de una grilla que está compuesta por filas y columnas*/
+  /*DISPLAY, definimos el comportamiento de cómo se verá un elemento HTML (su estructura), en este caso
+  nuestro NAV*/
+  grid-template-areas: "icono logo carrito"; /*cada nombre que asignamos a los elementos que
+  necesitamos posicionar se compartará como una columna ¿Por qué? porque están en un mismo renglón
+  y a su vez esto representa que se creará solo una fila*/
+  justify-content: space-between; /*en qué posición HORIZONTAL estarán nuestros elementos: 
+  start-al inicio, center- al centro, end-al final, space-between-el espaciado ENTRE elementos
+  será de la misma medida, proporcional por defecto), space-around (el espaciado de la misma medida ALREDEDOR de los elementos)*/
+  align-items: center; /*en qué posición VERTICAL estarán nuestros elementos
+  center-al centro*/ /*Siempre en relación al tamaño del contenedor*/
+}
+
+#icono-menu {
+  /*Asignamos propiedades a nuestros íconos y construimos botones con los
+  íconos dándole un tamaño un poco más grande para hacer click*/
+  padding: 8px; /*le aplicamos un espaciado interno*/
+  width: 24px; /*determinamos el tamaño de nuestro ícono*/
+}
+
+.nav-menu-abre {
+  grid-area: icono; /*Le asignamos el nombre del área que luego 
+  utilizaremos al componer/construir nuestra grilla en grid-template-areas*/
+}
+.nav-menu-cierra {
+  grid-area: abrecierra; /*Hacemos lo mismo para el ícono de cerrado del menú, pero de momento lo ocultamos
+  ya que solo aparecerá cuando se haga click sobre el ícono del menú abierto*/
+  display: none; /*En esta caso "NONE" determina que NO tendrá ningún comportamiento, 
+  por ende no se verá. Si no lo colocaramos se aplicará el comportamiento del elemento padre NAV*/
+}
+.nav-logo {
+  height: inherit; /*el contenedor de la imágen tipo link, etiqueta A
+  heredará la característica height de su elemento padre NAV. Por ende,
+  el tamaño del logo será el mismo*/
+  grid-area: logo;
+}
+.nav-menu-carrito {
+  grid-area: carrito;
+}
+.nav-menu-indice {
+  display: none; /*Ocultamos el índice ya que de momento no lo usaremos, al ser la página estática,
+  sin ningún tipo de funcionalidad aún*/
+}
+.nav-logo img {
+  height: inherit; /*Es necesario usar INHERIT para que nuestra
+  imágen también herede el mismo tamaño de su elemento padre NAV, 
+  porque sino, al ser la imágen de un mayor tamaño por defecto, 
+  se verá por fuera de nuestra estructura creada*/
+}
+
+/*MUESTRA DE PRODUCTOS - SECCIÓN PRINCIPAL*/
+/*Al iniciar una buena práctica es, así como escribimos toda la ruta de dónde se encuentra nuestra imágen
+en el documento HTML, en la hoja de estilos, es ideal aplicar el mismo concepto.
+Es decir, colocar el nombre de la etiqueta que vamos a modificar, luego el nombre de su respectivo selector: CLASS o
+ID. Principalmente para evitar errores o que sin querer pongamos un mismo nombre de clase a dos etiquetas
+y nos de problemas a futuro*/
+
+main.muestra-productos {
+  width: 100%; /*Determinamos el ancho de nuestra seccion MUESTRA PRODUCTOS*/
+  display: grid; /*Aplicamos GRID a esta sección. Queremos que se comporte como una grilla.*/
+  grid-template-columns: 1fr; /*Le indicamos que tenga una columna, no determinamos cuantas filas, dejamos
+  que por defecto se amolde a lo definido. 
+  En GRID se suelen usar dos tipos de medidas para controlar el tamaño de las columnas y filas. La unidad
+  FR y la unidad en porcentaje.
+  FR-Nos ayudará a deducir de forma automática el tamaño de la columna para llenar el espacio que esté disponible.
+  FR-Grid deducirá en unidad fracción, las partes que le va a asignar a cada uno de los elementos que contenga en partes
+  iguales a menos que le indiquemos que uno de los elementos por ejemplo en vez de medir 1fr, mida 2fr dentro del espacio
+  que exista.
+  Porcentaje- Son valores que le asignamos en relación al width o al height de nuestra sección.*/
+}
+
+/*Colocamos nuestro banner y le indicamos que se comporte como una caja flexible, por defecto colocará los elementos
+que contengan en la misma línea*/
+.muestra-banner-ofertas {
+  display: flex;
+  align-items: center; /*alineación vertical si el elemento */
+  justify-content: center; /*alineación horizontal*/
+  width: 100%; /*le indicamos que queremos que mida el 100% del espacio disponible*/
+  padding: 8px 0px 8px 0px; /*le damos un espaciado dentro del banner, se puede escribir de esta forma
+  cada px representa la dirección en la que se aplicará este padding. En este caso es en el siguiente orden: 
+  arriba derecha abajo izquierda;*/
+  background-color: #ff914d; /*Asignamos un color de fondo*/
+  height: 48px; /*Damos un tamaño fijo de alto al elemento banner ya que no queremos que se modifique*/
+}
+/*Construimos otro tipo de banner donde hay una imágen de fondo y el logo por encima*/
+.muestra-logo {
+  min-height: 200px; /*queremos el tamaño mínimo de nuestro banner 2 sea 200px*/
+  max-height: 230px; /*el tamaño máximo será 230px*/
+  /*estas dos propiedades sirven para darle un comportamiento "fluido" a la sección, en este caso.
+  Podemos usarlo en lugares  que queramos su tamaño sea variable dependiendo de si se agranda o se achica
+  nuestra página. Así también evitamos que se estreche y se deforme*/
+  display: flex; /*Usamos flex para que el contenido se ajuste al tamaño indicado y para centrar los elementos 
+  que contiene con sus otras propiedades*/
+  justify-content: center;
+  align-items: center;
+  background: url(../images/pexels-shvets-production-7525182.png); /*colocamos un fondo de tipo imágen, a través del atributo URL, 
+  le daremos la dirección en donde se encuentra nuestra imágen*/
+  /*Las propiedades BACKGROUND solo afectan a esa propiedad BACKGROUND*/
+  background-size: cover; /*establecemos que cubra toda la pantalla. Background-size refire al tamaño del background.*/
+  background-repeat: no-repeat; /*Aclaramos que NO queremos que se repita. Si no lo aclaramos, por defecto
+  puede que se repita la imágen en caso de querer llenar el espacio y que no llegue a rellenar todo el contenedor por si misma*/
+}
+/*Ajustamos el tamaño de nuestro logo ya que está demasiado grande por defecto*/
+.muestra-img-logo {
+  width: 60%; /*Lo hacemos con porcentaje para que sea una medida relativa y no fija, esto ayuda a que adopte
+  también el comportamiento flexible del contenedor en el que se encuentra*/
+}
+
+/*Construimos la sección donde mostramos los productos que queremos destacar*/
+
+/*H1*/
+.muestra-titulo-producto {
+  margin: 50px; /*le damos un margen en todas las direcciones, arriba abajo derecha e izquierda, para que el texto no quede tan pegado al borde*/
+  text-align: center; /*alineamos el texto al centro*/
+  font-size: 32px; /*aplicamos qué tamaño queremos que tenga el texto H1*/
+  padding: 10px; /*Damos un espaciado dentro del elemento H1*/
+  color: #ff914d; /*Modificamos el color del texto*/
+  font-weight: bold; /*Hacemos que el trazo sea más grueso*/
+  line-height: 200%;
+  font-family: amsterdam; /*determinamos una fuente específica para nuestro H1*/
+}
+
+/*Tarjetas de productos MUESTRA | Seccion principal dentro de MAIN*/
+.card-productos {
+  display: grid; /*usamos GRID para estructurar la cuadrícula en la que irán cada uno de los elementos dentro de esta sección*/
+  grid-template-rows: 1fr 1fr 1fr 0.5fr; /*Indicamos que tenga 4 filas y 3 columnas*/
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center; /*alineamos al centro los elementos*/
+}
+
+/*Separamos la tarjeta|card individual del producto que se muestra de las miniaturas*/
+.card-principal {
+  display: flex; /*Utilizamos flex, ya que no hace falta hacer una cuadricula para el elemento en cuestión*/
+  justify-content: center; /*alineamos todo al centro*/
+  align-items: center;
+  width: 230px; /*determinamos el tamaño en ancho del círculo que estamos creando*/
+  height: 230px; /*determinamos su altura*/
+  border-radius: 50%; /*modificamos el radio que tendrá el borde, esto aplicará un borde redondeado a la card*/
+  background-color: #73c1cb; /*Asignamos un fondo de color*/
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /*Para que resalte le añadimos unas sombras sobre el borde
+  del elemento*/
+  position: relative; /*Su posición tendrá un comportamiento relativo a sí mismo, y se comportará como elemento
+  padre. Y nos da la posibilidad de que, si otro elemento (hijo) dentro de este posee la propiedad position: absolute, 
+  tomará la posicón de este.*/
+  grid-row: 1/2; /*Esta es la manera de indicar desde qué lugar hasta qué lugar va a ocupar x espacio este elemento.
+  Como antes definimos una grilla con 4 filas y 3 columnas, y queremos que este elemento solo ocupe la primer fila 
+  contaremos la primer linea horizontal de la fila 1 hasta la linea primer linea de la fila 2. 1(primer linea de la primera linea)/2(primer linea de la segunda fila)
+  */
+  grid-column: 1/4; /*Hacemos lo mismo con las columnas, siempre hay que tener en cuenta cada línea que compone las columnas y
+  las filas, para poder hacer un posicionado correcto de los elementos*/
+}
+
+.muestra-circulo {
+  /*usamos position:absolute para que el segundo círculo quede en una posición relativa a su padre, es decir
+  eliminará todos valores predterminados en su posición para adoptar el comportamiento de la card circular(fondo)*/
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: #73c1cb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-image: url(../images/cupcake-frutilla.png);
+  background-size: 50% 60%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+.cupcake1 {
+  /*usamos position:absolute nuevamente para que la imágen del cupcake adopte la misma posición del elemento padre*/
+  position: absolute;
+  width: 30%; /*Como la imágen es mucho más grande que el contenedor, ajustamos su tamaño*/
+}
+
+/*Hacemos pequeñas cards circulares para la muestra en miniatura de los productos*/
+.cards-miniaturas {
+  /*contenedor de miniaturas*/
+  height: 100%; /*aplicamos que ocupe el 100% del espacio disponible en altura*/
+  align-items: center;
+  width: 80%;
+  display: flex; /*al necesitar centrar las imágenes aplicamos flex para poder hacerlo y que queden las
+  miniaturas contenidas como un bloque flexible*/
+  justify-content: space-around; /*Le damos un mismo espaciado alrededor de los elementos*/
+  grid-row: 2/3; /*colocamos esta cajita flex que creamos con las miniaturas en la fila 2*/
+  grid-column: 1/4; /*y determinamos que ocupe todas las columnas disponibles*/
+}
+
+.card-muestra-color {
+  /*personalizamos el color, el tamaño y la forma de las miniaturas*/
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.card-cupcake-1, /*reutilizamos código para aplicarlo a todas estas clases, ya que las características que comparten
+y que queremos asignarles son las mismas*/
+.card-cupcake-2,
+.card-cupcake-3 {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #bccfd2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-cupcake-1 {
+  /*queremos que la primer miniatura sea de otro color, así que usamos la clase correspondiente
+  aparte de lo aplicado antes. Aunque hayamos aplicado un color de fondo ya, como la hoja de estilos
+  se comporta en forma de cascada y estamos usando la misma clase (es decir, tiene una misma
+  jerarquía), remplazamos facilmente esta propiedad*/
+  background-color: #73c1cb;
+}
+.card-cupcake-1:hover {
+  background-color: #bccfd2;
+}
+.card-cupcake-2:hover,
+  /*hover sirve para poder indicarle el comportamiento, o acción visual que va
+  a ver nuestro usuario cuando posicione o pase su cursos sobre la miniatura*/
+.card-cupcake-3:hover {
+  background-color: #73c1cb;
+}
+.cupcake {
+  /*ajustamos el tamaño de las imágenes de los cupcakes para las miniaturas para que no sobresalgan de sus contenedores
+  correspondientes*/
+  width: 60%;
+  cursor: pointer;
+}
+
+/*Descripción del producto*/
+.card-productos-descripcion {
+  padding: 16px;
+  text-align: center; /*centramos el texto*/
+  font-size: 18px; /*definimos el tamaño del texto de la descripción*/
+  grid-row: 3/3;
+  grid-column: 1/4; /*colocamos la descripción en su posición correspondiente dentro de la grilla*/
+}
+/*estilo de botones en general*/
+.button {
+  /*primero definimos como queremos que se vean los botones de nuestra página, y para
+  agilizar el proceso y no tener que cambiar botón por botón, asignamos propiedades generales para todos, luego 
+  especificamos*/
+  border: none; /*eliminamos algunas propiedades por defecto que tienen el botón de tipo botón(html) y luego 
+  lo modificamos como queremos*/
+  color: #121212;
+  padding: 16px;
+  font-size: 16px; /*tamaño del texto*/
+  width: 192px;
+  height: 48px;
+  cursor: pointer; /*cuando se posicione el cursor sobre el botón aparecerá la "mano", haciendo más
+  visual esa interacción*/
+  border-radius: 10px; /*redondeamos sus bodes*/
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.contenedor-boton {
+  /*posicionamos el contenedor del botón COMPRAR dentro de la grilla*/
+  grid-row: 4/4;
+  grid-column: 1/4;
+}
+.button.comprar {
+  /*Le damos el color naranja*/
+  background-color: #ff914d;
+}
+
+/*SECCION imagen para dividir secciones*/
+.imagendecorativa {
+  /*Ajustamos las propiedades del contenedor que tendrá las imágenes*/
+  min-height: 800px; /*definimos el tamaño del contenedor*/
+  overflow: hidden; /*ocultamos el excedente si es que la imagen es un poco más grande que el contenedor, más que nada
+  para que no nos genere un scroll hacia los costados*/
+  display: flex; /*centramos las imágenes con flex*/
+  align-items: center;
+  flex-direction: column;
+  position: relative; /*le damos un comportamiento relativo al contenedor padre, para que el elemento hijo (imagen
+  de pastelería) pueda ser ajustada después como deseamos que quede*/
+}
+
+.imagendecorativa .division {
+  /*imagen de los cupcakes*/
+  width: 458px;
+  height: 272px;
+  transform: scale(
+    90%
+  ); /*se puede escalar una imágen de esta forma también, con la propiedad transform*/
+}
+
+.imagendecorativa .imagen {
+  height: 150%;
+  position: absolute;
+  margin-top: 25%;
+  opacity: 0.5; /*añadimos un poco de opacidad a la imágen que queremos de fondo, como está posicionada por encima
+  con position absolute eliminaremos esos valores por defecto y podremos acomodarla mejor debajo de la imagen .division*/
+}
+
+.secciones-titulo {
+  /*damos estilo a los títulos principales de la página de forma general, retuilizamos las clases en el documento HTML*/
+  /*aplicamos flex para centrar el texto de forma vertical y horizontal*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 0px 8px 0px;
+  background-color: #ff914d;
+  font-size: 28px;
+  font-family: amsterdam;
+  height: 100px;
+}
+.seccion-ofertas {
+  /*definimos el contenedor en el que estarán nuestras cards de los productos que están en oferta*/
+  display: flex; /*tiene un comportamiento de tipo bloque, todas las cards están alineadas
+  en una fila gracias a la propiedad flex*/
+  overflow: hidden; /*como no queremos que se vean todas las cards solo una, para luego perfeccionar
+  el carousel las escondemos. No usamos display porque queremos que ocupen espacio para después darles
+  funcionalidad con JS, así que solo las ocultamos con esta propiedad.*/
+  justify-content: center;
+}
+/*Maquetamos las cards de los productos con GRID*/
+.card-ofertas-contenedor {
+  padding: 32px;
+  margin: 70px;
+  border-radius: 15px;
+  min-width: 186px;
+  max-height: 325px;
+  background-color: #f9f9f9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.imagen-oferta {
+  /*imagen del producto con su respectivo título, le aplicamos flex para centrar los elementos*/
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1/3; /*colocamos en dónde va posicionada dentro de la grilla de la card*/
+  align-items: center;
+  grid-row: 1/2;
+}
+.img-torta-1 {
+  width: 55%; /*asignamos un tamaño de ancho a la imagen, la altura se ajustará proporcionalmente
+  a su ancho ya que está contenida en otro elemento*/
+}
+.card-colores {
+  /*colores de muestra en un bloque tipo flex*/
+  grid-column: 1/3;
+  grid-row: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px; /*indicamos cuánto espacio habrá entre los elementos, como necesitamos muy poco espaciado
+  nos conviene usar GAP en vez de alguna de las otras propiedades como space-between*/
+}
+.card-muestra-color#tortaAtr1 {
+  width: 30px;
+  height: 30px;
+  background-color: #e6a26f;
+}
+/*Hacemos lo mismo con el resto de elementos que componen a la card, solo que ahora
+colocaremos el precio al mismo nivel que el botón de agregar producto*/
+.precio-oferta {
+  grid-column: 1/2;
+  grid-row: 3/3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boton-contenedor-agregar {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+.button.agregar {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50px;
+  background-color: #ff914d;
+  background-image: url(../assets/plus-lg.svg); /*agregamos el ícono de otra forma, como imágen de fondo
+  sobre el color del elemento*/
+  background-repeat: no-repeat;
+  background-position: 12px; /*determinamos la posición de la imágen del ícono dentro del elemento circular (boton)*/
+}
+
+.ingredientes,
+.redes {
+  background-color: #73c1cb;
+} /*Damos el mismo color de fondo a los títulos NUESTROS INGREDIENTES y REDES*/
+
+.seccion-nuestrosIngredientes {
+  /*Aplicamos un tamaño fijo al contenedor de esta sección*/
+  height: 600px;
+  padding: 16px;
+  display: flex; /*por defecto nos coloca todos los ingredientes en la misma linea en 3 columnas*/
+  flex-wrap: wrap; /* para cambiar eso, usamos a propiedad Flex-wrap y le indicamos que queremos
+  contener todos los ingredientes en una sola columna*/ /*Luego al quitarlo en vista desktop, será
+  más sencillo readaptarlo*/
+  text-align: center;
+}
+.seccion-nuestrosIngredientes h3 {
+  font-family: amsterdam;
+}
+.ing {
+  /*definimos un mismo estilo, comportamiento, a nuestra clase .ing que será cada uno de los artículos
+  que contienen a los ingredientes, se reutiliza esta clase*/
+  margin-top: 32px;
+}
+
+/*SECCION REDES*/
+.seccion-redes {
+  display: flex; /*usamos flex nuevamente para que sea más sencillo alinear los elementos en una misma
+  linea que contiene
+  de tipo vínculo con etiqueta A. Se crean tres columnas*/
+  justify-content: space-evenly; /*distribuimos las redes de forma equitativa*/
+  align-items: center; /*los alineamos verticalmente*/
+  height: 192px; /*asignamos un tamañoo para la altura de esta sección*/
+}
+
+/*Personalizamos nuestros íconos a través de sus respectivas clases*/
+.iconos-redes {
+  display: flex;
+  justify-content: center;
+  transform: scale(2.5);
+}
+.bi-facebook,
+.bi-whatsapp,
+.bi-instagram {
+  border-radius: 10px;
+  padding: 8px;
+}
+.bi-facebook {
+  fill: #1877f2; /*para los archivos svg podemos usar la propiedad fill, que funcionará como la propiedad COLOR.*/
+}
+.bi-instagram {
+  color: #d43089;
+}
+.bi-whatsapp {
+  color: #25d366;
+}
+.bi-facebook:hover,
+.bi-instagram:hover,
+.bi-whatsapp:hover {
+  fill: #bccfd2;
+  /box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /*sombreado*/
+}
+
+/*Le aplicamos estilos a nuestro formulario*/
+.form-newsletter {
+  z-index: 1; /*nuevamente hacemos lo mismo para el formulario, y así darle lugar a que refleje una sombra*/
+  position: relative;
+  padding: 32px;
+  font-family: poppins; /*determinamos la fuente que usaremos para el texto*/
+  line-height: 130%;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-contenedor {
+  text-align: center;
+  height: 230px;
+  display: flex; /*acomoadamos los elementos dentro del contenedor form en filas y los alineamos*/
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 16px; /*determinamos un espaciado entre las filas (hay tantas filas como elementos)*/
+}
+
+.input-email {
+  width: 70%;
+  margin: 16px 0px 16px 0px; /*le damos un espaciado por fuera de nuestro input, donde se ingresará el email.
+  Recordemos el orden y la dirección en el que estamos modificando cada valor :
+  arriba derecha abajo izquierda;*/
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+/*damos estilo al botón enviar tipo input*/
+.form-enviar {
+  background-color: #bccfd2;
+}
+/*Así como colocamos el logo negro en la parte superior de nuestra página, ahora colocamos el logo en color*/
+.logo-color {
+  padding: 16px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+}
+.img-logo-color {
+  width: 80%;
+  height: auto;
+}
+/*SECCION FOOTER, PIE DE PAGINA*/
+footer {
+  background-color: #f9f9f9; /*estableceos un color a toda la sección FOOTER*/
+}
+.footer-mapa-de-sitio {
+  width: auto;
+  display: grid; /*Usamos grid para estructurar toda la sección y los alineamos al centro*/
+  justify-content: center;
+  text-align: center;
+  grid-template-rows: 2fr 0.4fr;
+  font-family: poppins;
+  justify-items: center;
+  font-size: 14px;
+}
+.nav-contenedor-mapa {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.nav-contenedor-mapa h3 {
+  grid-row: 1/2;
+  font-size: 16px;
+  font-family: poppins;
+}
+.nav-mapa-lista,
+.nav-contactanos,
+.nav-horarios {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+  margin: 20px;
+}
+.nav-mapa-lista li {
+  cursor: pointer;
+}
+.nav-mapa-lista li a {
+  text-decoration: none;
+}
+.link-nav a {
+  text-decoration: none;
+  color: #121212;
+}
+
+/*Damos un color, forma y tamaño a nuestra etiqueta A, que se comportará como un botón*/
+.subir {
+  margin: 16px;
+  grid-row: 2/3;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
+  background-color: #73c1cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subir img {
+  width: 20px;
+  height: 20px;
+}
+.subir:hover {
+  background-color: #bccfd2;
+}
+
+/*Aplicamos la propiedad MEDIAQUERIE para poder establecer cómo queremos que sea vea nuestra página
+en un tamaño de pantalla determinado*/
+/*En este caso le indicamos que cambiará la apariencia de nuestro Landing Page cuando
+el tamaño de visualización sea de 768 píxeles*/
+@media (min-width: 768px) {
+  .nav.contenedor {
+    grid-template-areas: "logo indice carrito"; /*cambiamos el orden y eliminamos el botón del menú*/
+    /*redistribuimos el menú de navegación para vista desktop*/
+  }
+  .nav-menu-abre,
+  .nav-menu-cierra {
+    display: none;
+  } /*Con display, le eliminamos todo tipo de comportamiento a estos elementos tipo ícono
+  y así logramos que no sean visibles ni tampoco ocupen ningún tipo de espacio en nuestro layout | maquetado*/
+
+  .nav-menu-indice {
+    display: flex; /*hacemos el área del índice visible*/
+    justify-content: space-between; /*centramos los elementos con un mismo espaciado entre elementos*/
+    grid-area: indice; /*establecemos un nombre al área que estamos añadiendo*/
+  }
+  .nav-menu-indice li {
+    margin: 0px 16px 0px 16px; /*Asignamos un margen a cada elemento li que contiene la lista, para que cada
+    título tenga un espacio por fuera y se pueda visualizar mejor cada uno por separado*/
+    padding: 16px; /*también le agregamos un espaciado interno, que sera parte de la zona clickeable*/
+  }
+  .nav-menu-indice li:hover {
+    /*con :HOVER, determinamos que cuando se posicione el mouse sobre el elemento
+    proyectará una sombra*/
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  .card-ofertas-contenedor {
+    min-width: 0px; /*reseteamos el acho del contenedor*/
+    width: 100%; /*aplicamos un tamaño 100% para la vista desktop*/
+  }
+}
