@@ -136,11 +136,11 @@ nav button.btnCierraMenu {
   grid-area: cierra;
   display: none;
 }
-a.enlaceLogo:nth-child(3) {
+a.enlaceLogo .imgLogoNav {
   height: 48px;
   grid-area: logo;
 }
-a.enlaceCarrito:nth-child(5) {
+button.enlaceCarrito .imgIcono.carrito {
   grid-area: carrito;
 }
 
@@ -436,11 +436,50 @@ section.carrouselOfertas {
   background-color: var(--color-principal-anaranjado);
 }
 
-.btn-añadir-carrito {
-  height: 20px;
-}
-.contenedor-carrito-productos.no-visible {
+.carritoListado.no-visible {
   display: none;
+}
+.carritoListado {
+  position: absolute;
+  right: 0;
+  margin-top: 60px;
+  top: 0px;
+  width: 300px;
+  bottom: 0;
+}
+.contenedor-carrito-productos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.contenedorTotal {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--color-blanco);
+}
+.filaProducto {
+  width: 100%;
+  border-bottom: solid var(--color-negro) 1px;
+}
+.filaProducto div {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: space-around;
+  display: flex;
+  background-color: var(--color-blanco);
+}
+.infoCarritoProducto {
+  width: 100%;
+  display: flex;
+}
+.btn-eliminar-producto {
+  margin: 8px;
+  padding: 8px;
 }
 
 @media (max-width: 900px) {

@@ -49,25 +49,28 @@
         <button href="#" class="enlaceCarrito" id="btn-carrito">
           <img
             src="./assets/bag.svg"
-            class="imgIcono Carrito"
+            class="imgIcono carrito"
             alt="icono carrito menu"
           />
         </button>
-        <div class="contenedor-carrito-productos no-visible">
-          <div class="filaProducto">
-            <div class="card-producto">
-              <div class="infoCarritoProducto">
-                <p class="tituloCarritoProducto">Producto Prueba</p>
-                <span class="cantidadCarritoProducto"> 1</span>
-                <span class="precioProductoCarrito">$2000</span>
+        <div class="carritoListado no-visible">
+          <div class="contenedor-carrito-productos">
+            <div class="filaProducto">
+              <div>
+                <div class="infoCarritoProducto">
+                  <p class="tituloCarritoProducto"></p>
+                  <span class="cantidadCarritoProducto"></span>
+                  <span class="precioProductoCarrito"></span>
+                </div>
+                <button class="btn-eliminar-producto"></button>`
               </div>
             </div>
+            <div class="contenedorTotal">
+              <h4 class="tituloTotal">Total:</h4>
+              <span class="totalPagar">$0</span>
+            </div>
           </div>
-        </div>
-        <div class="cantidadproductos" id="contador-productos"></div>
-        <div class="carritoTotal">
-          <h4>Total:</h4>
-          <span class="totalPagar">$0</span>
+          <div class="cantidadproductos" id="contador-productos"></div>
         </div>
       </nav>
     </header>

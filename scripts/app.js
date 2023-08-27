@@ -1,3 +1,5 @@
+/*########----MENU HAMBURGUESA-----#########*/
+
 /*Creamos variables constantes para guardar
 el valor que estamos "llamando" a través del
 DOM. 
@@ -25,6 +27,9 @@ cerrar.addEventListener("click", () => {
   menu.classList.remove("visible");
   cerrar.classList.remove("visible");
 });
+
+/*########----PRODUCTOS DESTACADOS CAMBIAN AL HACER CLICK EN SUS MINIATURAS-----#########*/
+
 //Creamos un array, que lo pensamos como una lista ordenada de elementos. Cada elemento ocupará una posición.
 //En este caso guardaremos objetos dentro de este array, entonces cada objeto va a ocupar un espacio.
 //Cada objeto va a estar delimitado entre llaves {producto 1} {producto 2} {producto 3}.
@@ -93,102 +98,7 @@ producto3_btn.onclick = function () {
 };
 */
 
-//Carrito de compra
-const listaProductos = document.querySelector(".galeriaCarousel");
-//Selecciona nuestra galeria de productos
-const btnCarrito = document.querySelector("#btn-carrito");
-//Selecciona nuestro botón de carrito en el menú de navegación
-const contenedorOfertas = document.querySelector(".contenedorProductos");
-//Selecciona el contenedor de nuestro producto
-//Como esta clase se repite el comportamiento que le demos afectará a todos ellos
-
-const carritoContenedor = document.querySelector(
-  //selecciona el contendor general de nuestro carrito
-  ".contenedor-carrito-productos"
-);
-
-const filaProducto = document.querySelector(".filaProducto"); //Selecciona el sub contenedor donde luego se verá nuestra lista de compra
-
-btnCarrito.addEventListener("click", () => {
-  //llamamos al método click de js para usarlo con el botón del carrito.
-  carritoContenedor.classList.toggle("no-visible"); //metodo toggle sirve para cambiar el estao de la visibilidad de un elemento HTML.
-});
-//Al hacer click en el botón del carrito se quitara la clase novisible y se mostrará
-
-//Arreglo de productos
-
-let totalProductos = [];
-const valorTotal = document.querySelector(".totalPagar"); //Seleccionamos el elemento con la clase .totalPagar donde mostraremos luego el resultado de una operación
-const contadorProductos = document.querySelector("#contador-productos"); //seleccionamos el contador de nuestro html que mostraremos debajo del botón del carrito como indicador de cuántos productos añadimos
-
-listaProductos.addEventListener("click", (e) => {
-  //le decimos a la lista de productos que seleccionamos (productos que tenemos en la galeria) que acción va a realizar cuando se haga click dentro de este elemento
-  //console.log(e.target) //Comprobamos que al hacer click en x elemento nos devuelva su estructura HTML
-  //console.log(e.target.classList.contains("precioActual")); //Comprobamos si el elemento en el que damos click tiene la clase precio nos devuelve un valor TRUE de tipo booleano
-  //console.log(e.target.classList.contains("btn-agregar-carrito"));//comprobamos que al presionar el boton de agregar al carrito nos tome un valor verdadero TRUE.
-  //con e.target podemos saber donde estamos haciéndo click
-  //hacemos una condición
-  if (e.target.classList.contains("btn-agregar-carrito")) {
-    // Si el elemento en el que se hizo clic tiene la clase "btn-agregar-carrito", entonces...
-    //especificamos que si el click se realiza sobre el botón del carrito entonces...
-    const producto = e.target.closest(".contenedorOfertas"); //recorreremos el contendor y a sus elementos padres, buscamos el elemento más cercano
-    const infoProducto = {
-      // Creamos un objeto "infoProducto" que almacena información sobre el producto que se agregará al carrito
-      quantity: 1, //asignamos un identificador a nuestro objeto, como si fuera un dni
-      nombre: producto.querySelector("h3").textContent, // Extraemos el texto del elemento <h3> dentro del contenedor del producto.
-      precio: producto.querySelector(".precioActual").textContent, //También tomamos el texto del elemento con clase precioActual
-    };
-    const existencia = totalProductos.some(
-      //metodo some, se usa cuando queremos saber su por lo menos un elemento cumple la función que le indicamos luego con una función de tipo flecha
-      //asginamos un valor a la constante existencia, que guardará un dato true o false.
-      (producto) => producto.nombre === infoProducto.nombre //comparación estricta, revisa si dos operadores (variables, constantes, etc) son iguales tanto en contenido como en su tipo de dato, y nos devuelve un resultado booleano. Cmpara el nombre del producto actual (infoProducto.nombre) con los nombres de los productos en totalProductos.
-    );
-
-    if (existencia) {
-      const productos = totalProductos.map((producto) => {
-        if (producto.nombre === infoProducto.nombre) {
-          producto.quantity++;
-          return producto;
-        } else {
-          return producto;
-        }
-      }); //si es true entonces el producto ya está en el carrito, y utilizamos el método map() en totalProductos para crear un array llamado productos. Actualizamos la cantidad de un producto que ya existe en el carrito
-      //si el nombre no coincide nos devuelve el producto sin cambios
-      totalProductos = [...productos]; //también devuelve un array que asignamos al array totalProductos, actualizando la cantidad de productos que están en el carrito.
-    } else {
-      totalProductos = [...totalProductos, infoProducto]; //si es false, le agregamos infoProductos al array totalProductos, es decir, ya le damos la información que debe contener porque tenemos certeza de que no se va a repetir, solo aparecerá una vez.
-    }
-    showHTML();
-  }
-});
-
-const showHTML = () => {
-  filaProducto.innerHTML = ""; //Limpia el HTML
-  let total = 0;
-  let totalCarritoProductos = 0;
-
-  //Creamos variable para calcular el total del carrito precio
-
-  totalProductos.forEach((producto) => {
-    const contenedorProducto = document.createElement("div");
-    contenedorProducto.classList.add("listaCarrito");
-    contenedorProducto.innerHTML = `
-    <div class="infoCarritoProducto">
-      <p class="tituloCarritoProducto">${producto.nombre}</p>
-      <span class="cantidadCarritoProducto">${producto.quantity}</span>
-      <span class="precioProductoCarrito">${producto.precio}</span>
-    </div>`;
-
-    filaProducto.appendChild(contenedorProducto);
-    total = total + parseInt(producto.quantity * producto.precio.slice(1));
-    totalCarritoProductos = totalCarritoProductos + producto.quantity;
-  });
-
-  valorTotal.innerHTML = `$${total}`;
-  contadorProductos.innerHTML = totalCarritoProductos;
-};
-
-// Espera a que se cargue el contenido del DOM antes de ejecutar el script
+/*########----CARROUSEL CON CONTROLES (FLECHAS)-----#########*/
 
 // Obtiene las referencias a los botones y la galería
 const prevBtn = document.querySelector(".prev-button");
@@ -229,4 +139,114 @@ function scrollGaleria() {
 
   // Aplica el desplazamiento al atributo scrollLeft de la galería
   galeria.scrollLeft = tamañoScroll;
+}
+
+/*########----CARRITO DE COMPRAS USANDO CLASES Y IDS-----#########*/
+
+//Carrito de compra
+const listaProductos = document.querySelector(".galeriaCarousel");
+//Selecciona nuestra galeria de productos
+const btnCarrito = document.querySelector("#btn-carrito");
+//Selecciona nuestro botón de carrito en el menú de navegación
+//Selecciona el contenedor de nuestro producto
+//Como esta clase se repite el comportamiento que le demos afectará a todos ellos
+const filaProducto = document.querySelector(".filaProducto"); //Selecciona el sub contenedor donde luego se verá nuestra lista de compra
+let totalProductos = [];
+const contenedorTotal = document.querySelector(".contenedorTotal");
+const valorTotal = document.querySelector(".totalPagar"); //Seleccionamos el elemento con la clase .totalPagar donde mostraremos luego el resultado de una operación
+const contadorProductos = document.querySelector("#contador-productos"); //seleccionamos el contador de nuestro html que mostraremos debajo del botón del carrito como indicador de cuántos productos añadimos
+
+const carritoContenedor = document.querySelector(
+  //selecciona el contendor general de nuestro carrito
+  ".carritoListado"
+);
+
+btnCarrito.addEventListener("click", () => {
+  //llamamos al método click de js para usarlo con el botón del carrito.
+  carritoContenedor.classList.toggle("no-visible"); //metodo toggle sirve para cambiar el estao de la visibilidad de un elemento HTML.
+});
+//Al hacer click en el botón del carrito se quitara la clase novisible y se mostrará
+
+//Llamamos a un evento que aplicaremos a la lista de productos al hacer click
+listaProductos.addEventListener("click", (e) => {
+  //le decimos a la lista de productos que seleccionamos (productos que tenemos en la galeria) que acción va a realizar cuando se haga click dentro de este elemento
+  //console.log(e.target) //Comprobamos que al hacer click en x elemento nos devuelva su estructura HTML
+  //console.log(e.target.classList.contains("precioActual")); //Comprobamos si el elemento en el que damos click tiene la clase precio nos devuelve un valor TRUE de tipo booleano
+  //console.log(e.target.classList.contains("btn-agregar-carrito"));//comprobamos que al presionar el boton de agregar al carrito nos tome un valor verdadero TRUE.
+  //con e.target podemos saber donde estamos haciéndo click
+  //hacemos una condición
+  if (e.target.classList.contains("btn-agregar-carrito")) {
+    //Vertificamos si el elemento clickeado tiene la clase correspondiente. Si es así nuestra condición se cumple e ingresa al resto del código
+    const producto = e.target.closest(".contenedorOfertas"); //e.target sirve para detectar que elemento fue clickeado y con el método closest() tendremos disponibles los elementos más cercanos que tenga la clase contenedorOfertas
+    const nombre = producto.querySelector("h3").textContent;
+    const precio = producto.querySelector(".precioActual").textContent;
+    //Obtenemos el nombre y el precio del producto dentro del contenedor con textContent que tomará el valor que contenga la etiqueta H3 y la clase .precioActual del elemento.
+
+    const productoExistente = totalProductos.find(
+      //Buscamos si el producto ya existe en nuestro carrito
+      (item) => item.nombre === nombre
+    );
+    if (productoExistente) {
+      //Usamos una condición para verificar que si esto es cierto (true), le sumamos uno a la cantidad base del producto existente.
+      productoExistente.cantidad++;
+    } else {
+      //Si esto NO es cierto (false), y el elemento todavía no existe, lo agregaremos y guardaremos en nuestro array totalProductos como objeto. Le damos una cantidad base de 1.
+      totalProductos.push({ nombre, precio, cantidad: 1 });
+    }
+
+    actualizarCarrito();
+  }
+});
+valorTotal.innerHTML = "El carrito está vacío";
+const actualizarCarrito = () => {
+  //Función para actualizar el carrito de la página
+  filaProducto.innerHTML = ""; //Limpiamos el contenido que haya en nuestro HTML dentro del contenedor de nuestra lista de productos.
+  //Creamos variables de tipo let ya que necesitamos que sus valores se actualicen.
+  let total = 0;
+  let totalCarritoProductos = 0;
+  if (totalProductos.length === 0) {
+    contenedorTotal.innerHTML = "";
+    //si no hay productos en el carrito, muestra un mensaje de carrito vacío
+    filaProducto.innerHTML = "<p>El carrito está vacío</p>";
+  } else {
+    //Creamos variable para calcular el total del carrito precio
+
+    totalProductos.forEach((producto) => {
+      const contenedorProducto = document.createElement("div");
+      contenedorProducto.innerHTML = `
+      <div class="infoCarritoProducto">
+        <p class="tituloCarritoProducto">${producto.nombre}</p>
+        <span class="cantidadCarritoProducto">${producto.cantidad}</span>
+        <span class="precioProductoCarrito">${producto.precio}</span>
+      </div>
+      <button class="btn-eliminar-producto">X</button>`; // Agregamos el botón eliminar
+      filaProducto.appendChild(contenedorProducto);
+      total = total + parseInt(producto.cantidad * producto.precio.slice(1));
+      totalCarritoProductos = totalCarritoProductos + producto.cantidad;
+    });
+
+    //Hacemos visible la información que procesamos en nuestro HTML con la propiedad innerHTML del DOM. Lo que hace es establecer la sintaxis de nuestro HTML, permitiéndonos reemplazar el contenido que tenemos de base con el contenido que generamos a través de JS.
+    valorTotal.innerHTML = `$${total}`; //Hacemos visible el valor total de la suma de los productos y la cantidad de productos añadidos al carrito
+  }
+  contadorProductos.innerHTML = totalCarritoProductos;
+};
+
+//Al hacer click en el boton para eliminar el producto, se borrará el producto en cuestión
+filaProducto.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-eliminar-producto")) {
+    //si clickeamos en un elemento que contenga la clase btn-eliminar-producto entonces...
+    const nombreProductoEliminar = e.target.parentElement.querySelector(
+      //guardamos el contenido del elemento seleccionado que contenga la clase correspondiente, en la variable nombreProductoEliminar
+      ".tituloCarritoProducto"
+    ).textContent;
+    eliminarProducto(nombreProductoEliminar); //Entonces al hacer click en el botón eliminar, si se cumple la condición se ejecutará una función que tomará como parámetro el contenido que guardamos en la variable creada nombreProductoEliminar.
+  }
+});
+function eliminarProducto(nombre) {
+  //Tomamos el parámetro anterior y definimos qué acción realizará nuestra función
+  totalProductos = totalProductos.filter(
+    //Usamos el método "filter" en el arreglo "totalProductos"
+    (producto) => producto.nombre !== nombre //este método crea un nuevo arreglo con todos los elementos que cumplan la condición. En este caso filtramos los productos para excluir los productos que tengan el mismo contenido (nombre) dentro de la variable constante que paasamos como parámetro antes.
+  );
+  actualizarCarrito(); //Actualizamos el carrito con el producto eliminado
 }
