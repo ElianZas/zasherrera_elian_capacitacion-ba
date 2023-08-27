@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <!--#HEADER MENÚ DE NAVEGACIÓN#-->
     <header class="encabezado" id="encabezado">
       <nav class="navegacionEncabezado">
         <button class="btnAbreMenu" id="abrir">
@@ -40,21 +41,37 @@
         </a>
         <ul class="listaMenuEncabezado" id="menu-nav">
           <li><a href="./index.html">Home</a></li>
+          <li><a href="#ofertas">Ofertas</a></li>
           <li><a href="#" target="_blank">Productos</a></li>
           <li><a href="#" target="_blank">Servicios</a></li>
-          <li><a href="#" target="_blank">Productos</a></li>
           <li><a href="#" target="_blank">Nosotros</a></li>
         </ul>
-        <a href="#" class="enlaceCarrito">
+        <button href="#" class="enlaceCarrito" id="btn-carrito">
           <img
             src="./assets/bag.svg"
             class="imgIcono Carrito"
             alt="icono carrito menu"
           />
-        </a>
+        </button>
+        <div class="contenedor-carrito-productos no-visible">
+          <div class="filaProducto">
+            <div class="card-producto">
+              <div class="infoCarritoProducto">
+                <p class="tituloCarritoProducto">Producto Prueba</p>
+                <span class="cantidadCarritoProducto"> 1</span>
+                <span class="precioProductoCarrito">$2000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cantidadproductos" id="contador-productos"></div>
+        <div class="carritoTotal">
+          <h4>Total:</h4>
+          <span class="totalPagar">$0</span>
+        </div>
       </nav>
     </header>
-
+    <!--#MAIN PRODUCTOS DESTACADOS#-->
     <main class="destacadosMain">
       <h1 class="tituloPromo">¡Mirá nuestras promos! 30% OFF</h1>
 
@@ -65,7 +82,7 @@
           alt="Logo Borcelle Panaderia y pasteleria color negro"
         />
       </section>
-
+      <!--#Contenedor de productos#-->
       <section class="productoInteractivo">
         <h3 class="nombreProducto" id="nombre-producto">Frambuesa Tentadora</h3>
         <article class="contenedorProducto">
@@ -113,7 +130,7 @@
         <button class="button comprar">COMPRAR</button>
       </section>
     </main>
-
+    <!--#Banner para dividir sección#-->
     <div class="divisorSeccion">
       <img
         class="cupcakesFondo"
@@ -122,18 +139,33 @@
       />
       <div class="divBannerTienda"></div>
     </div>
-    <section class="carrouselOfertas">
+    <!--#SECCION CAROUSEL OFERTAS#-->
+    <section class="carrouselOfertas" id="ofertas">
       <h2 class="tituloCategoria">Ofertas</h2>
-      <button class="slider-button prev-button">&lt;</button>
+      <button class="slider-button prev-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-arrow-left-short"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
+          />
+        </svg>
+      </button>
       <div class="galeriaCarousel">
         <article class="contenedorOfertas">
-          <div class="productoOferta">
+          <div class="productoOferta 1">
             <h3 class="nombreOferta">
               Torta <span class="nombreResalta">ATR</span>
             </h3>
             <img
               class="producto 1"
-              src="./images/tortaAtrImagen.png"
+              src="./images/tortaAtr-chocolate.png"
               alt="torta de frutilla con baño de chocolate"
             />
             <div class="infoProducto">
@@ -151,9 +183,9 @@
                   <!--antes-->
                 </div>
                 <div class="btnAñadirContenedor">
-                  <button type="button" class="btnAñadirCarrito">
+                  <button type="button" class="btnAnadirCarrito">
                     <img
-                      class="iconoAñadir"
+                      class="btn-agregar-carrito"
                       src="./assets/plus-lg.svg"
                       alt="icono para añadir producto al carrito"
                     />
@@ -164,21 +196,16 @@
           </div>
         </article>
         <article class="contenedorOfertas">
-          <div class="productoOferta">
+          <div class="productoOferta 2">
             <h3 class="nombreOferta">
-              Torta <span class="nombreResalta">ATR</span>
+              Factu <span class="nombreResalta">Deli</span>
             </h3>
             <img
-              class="producto 1"
-              src="./images/tortaAtrImagen.png"
-              alt="torta de frutilla con baño de chocolate"
+              class="producto 2"
+              src="./images/facturas.png"
+              alt="facturas surtidas"
             />
             <div class="infoProducto">
-              <div class="muestraColores">
-                <!--muestra de colores-->
-                <div class="colorOferta" id="muestra1"></div>
-                <div class="colorOferta" id="muestra2"></div>
-              </div>
               <div class="ofertaPrecio">
                 <!--precio antes y después-->
                 <div class="precios">
@@ -188,9 +215,9 @@
                   <!--antes-->
                 </div>
                 <div class="btnAñadirContenedor">
-                  <button type="button" class="btnAñadirCarrito">
+                  <button type="button" class="btnAnadirCarrito">
                     <img
-                      class="iconoAñadir"
+                      class="btn-agregar-carrito"
                       src="./assets/plus-lg.svg"
                       alt="icono para añadir producto al carrito"
                     />
@@ -201,14 +228,14 @@
           </div>
         </article>
         <article class="contenedorOfertas">
-          <div class="productoOferta">
+          <div class="productoOferta 3">
             <h3 class="nombreOferta">
-              Torta <span class="nombreResalta">ATR</span>
+              Dona <span class="nombreResalta">Mía</span>
             </h3>
             <img
-              class="producto 1"
-              src="./images/tortaAtrImagen.png"
-              alt="torta de frutilla con baño de chocolate"
+              class="producto 3"
+              src="./images/dona-chispas-banochocolate.png"
+              alt="dona chocolate con chispas naranjas y rosas"
             />
             <div class="infoProducto">
               <div class="muestraColores">
@@ -225,9 +252,9 @@
                   <!--antes-->
                 </div>
                 <div class="btnAñadirContenedor">
-                  <button type="button" class="btnAñadirCarrito">
+                  <button type="button" class="btnAnadirCarrito">
                     <img
-                      class="iconoAñadir"
+                      class="btn-agregar-carrito"
                       src="./assets/plus-lg.svg"
                       alt="icono para añadir producto al carrito"
                     />
@@ -238,13 +265,13 @@
           </div>
         </article>
         <article class="contenedorOfertas">
-          <div class="productoOferta">
+          <div class="productoOferta 4">
             <h3 class="nombreOferta">
-              Torta <span class="nombreResalta">ATR</span>
+              Panes <span class="nombreResalta">Ti</span>
             </h3>
             <img
-              class="producto 1"
-              src="./images/tortaAtrImagen.png"
+              class="producto 4"
+              src="./images/panificados.png"
               alt="torta de frutilla con baño de chocolate"
             />
             <div class="infoProducto">
@@ -262,9 +289,46 @@
                   <!--antes-->
                 </div>
                 <div class="btnAñadirContenedor">
-                  <button type="button" class="btnAñadirCarrito">
+                  <button type="button" class="btnAnadirCarrito">
                     <img
-                      class="iconoAñadir"
+                      class="btn-agregar-carrito"
+                      src="./assets/plus-lg.svg"
+                      alt="icono para añadir producto al carrito"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="contenedorOfertas">
+          <div class="productoOferta 5">
+            <h3 class="nombreOferta">
+              Coo <span class="nombreResalta">KIE</span>
+            </h3>
+            <img
+              class="producto 5"
+              src="./images/galletas-colores.png"
+              alt="torta de frutilla con baño de chocolate"
+            />
+            <div class="infoProducto">
+              <div class="muestraColores">
+                <!--muestra de colores-->
+                <div class="colorOferta" id="muestra1"></div>
+                <div class="colorOferta" id="muestra2"></div>
+              </div>
+              <div class="ofertaPrecio">
+                <!--precio antes y después-->
+                <div class="precios">
+                  <span class="precioActual">$5000</span>
+                  <!--oferta-->
+                  <span class="precioAnterior">$6000</span>
+                  <!--antes-->
+                </div>
+                <div class="btnAñadirContenedor">
+                  <button type="button" class="btnAnadirCarrito">
+                    <img
+                      class="btn-agregar-carrito"
                       src="./assets/plus-lg.svg"
                       alt="icono para añadir producto al carrito"
                     />
@@ -275,8 +339,23 @@
           </div>
         </article>
       </div>
-      <button class="slider-button next-button">&gt;</button>
+      <button class="slider-button next-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-arrow-right-short"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+          />
+        </svg>
+      </button>
     </section>
+    <!--#SECCION CAROUSEL OFERTAS#-->
     <script src="./scripts/app.js"></script>
   </body>
 </html>

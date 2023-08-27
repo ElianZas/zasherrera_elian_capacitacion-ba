@@ -99,7 +99,7 @@ a {
 body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 65px repeat(16, 1fr);
+  grid-template-rows: 75px repeat(16, 1fr);
   background-color: var(--body-bg);
 }
 
@@ -124,7 +124,7 @@ nav.navegacionEncabezado {
 
 nav a img.imgIcono, /*Damos estilo a los botones e iconos*/
 button img.imgIcono {
-  width: 24px;
+  width: 40px;
   padding: 8px;
 }
 
@@ -325,10 +325,9 @@ section.carrouselOfertas {
   width: 100%;
 }
 .carrouselOfertas .tituloCategoria {
-  background-color: orange;
+  background-color: var(--color-principal-anaranjado);
   text-align: center;
   width: 100%;
-  font-size: 3rem;
 }
 .galeriaCarousel {
   display: flex;
@@ -336,21 +335,20 @@ section.carrouselOfertas {
   justify-content: flex-start;
   min-height: 600px;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 .galeriaCarousel article {
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 .slider-button {
-  background-color: #993030;
-  height: 45px;
-  width: 45px;
+  background-color: var(--color-secundario-turquesaclaro);
+  height: 48px;
+  width: 48px;
   text-align: center;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.2rem;
   top: 350px;
   position: absolute;
   z-index: 1;
@@ -370,19 +368,22 @@ section.carrouselOfertas {
 
 .productoOferta {
   margin: 32px;
-  box-shadow: 1px 1px 0px 0px;
+  box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
+  justify-content: space-between;
   padding: 32px;
   background-color: #f9f9f9;
+  height: 350px;
+  width: 200px;
 }
 .nombreOferta {
   text-align: center;
 }
 .nombreOferta .nombreResalta {
-  color: red;
+  color: var(--color-principal-turquesa);
 }
 .productoOferta img.producto {
   width: 150px;
@@ -404,7 +405,12 @@ section.carrouselOfertas {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #e6a26f;
+}
+.colorOferta:first-child {
+  background-color: rgb(92, 66, 28);
+}
+.colorOferta:last-child {
+  background-color: rgb(221, 109, 156);
 }
 .ofertaPrecio {
   width: 100%;
@@ -416,20 +422,25 @@ section.carrouselOfertas {
   display: flex;
   flex-direction: column;
 }
-
-.btnAñadirCarrito {
+.precioAnterior {
+  text-decoration: line-through;
+}
+.btnAnadirCarrito {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  box-shadow: 1px 1px 0px 0px;
-  background-color: orange;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-principal-anaranjado);
 }
 
-.iconoAñadir {
+.btn-añadir-carrito {
   height: 20px;
+}
+.contenedor-carrito-productos.no-visible {
+  display: none;
 }
 
 @media (max-width: 900px) {
