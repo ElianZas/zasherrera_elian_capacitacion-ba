@@ -466,6 +466,13 @@ section.carrouselOfertas {
   width: 100%;
   border-bottom: solid var(--color-negro) 1px;
 }
+.textoVacio {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: space-around;
+  display: flex;
+  background-color: var(--color-blanco);
+}
 .filaProducto div {
   padding-top: 1rem;
   padding-bottom: 1rem;

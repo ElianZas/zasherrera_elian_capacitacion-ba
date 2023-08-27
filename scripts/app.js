@@ -197,7 +197,6 @@ listaProductos.addEventListener("click", (e) => {
     actualizarCarrito();
   }
 });
-valorTotal.innerHTML = "El carrito está vacío";
 const actualizarCarrito = () => {
   //Función para actualizar el carrito de la página
   filaProducto.innerHTML = ""; //Limpiamos el contenido que haya en nuestro HTML dentro del contenedor de nuestra lista de productos.
@@ -205,9 +204,9 @@ const actualizarCarrito = () => {
   let total = 0;
   let totalCarritoProductos = 0;
   if (totalProductos.length === 0) {
-    contenedorTotal.innerHTML = "";
+    valorTotal.innerHTML = "";
     //si no hay productos en el carrito, muestra un mensaje de carrito vacío
-    filaProducto.innerHTML = "<p>El carrito está vacío</p>";
+    filaProducto.innerHTML = "<p class='textoVacio'>El carrito está vacío</p>";
   } else {
     //Creamos variable para calcular el total del carrito precio
 
