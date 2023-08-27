@@ -1,0 +1,446 @@
+/* 
+------------------VARIABLES----------------
+
+Las variables son como cajitas en donde
+podemos definir distintas características
+en cada una de ellas y hacer referencia
+a ellas en cualquier lugar de nuestra hoja
+de estilos dentro de los elementos en los que
+deseemos utilizarlas.
+
+Es una herramienta que nos ayudará a mantener
+prolijidad en el código y orden, además de que
+fomenta a buscar la mejor legibilidad para
+visualizar nuestro código tanto nosotros, como
+alguien más, en caso de trabajar con un otro.
+
+Un ejemplo: 
+Si tenemos una sección con un fondo de color #ffede5, 
+será más sencillo encontrarla y modificarla si creamos
+y utilizamos una variable.
+
+Formato que ya conocemos:
+
+ofertas{
+  color: #ffede5;
+}
+
+Creando una variable y haciendo referencia a ella:
+
+:root{
+  --ofertas-bg-color:#ffede5;
+}
+
+ofertas{
+  color: var(--ofertas-bg-color);
+}
+
+Es una buena práctica semántica.
+
+Ahora, como pudimos ver para crear la variable
+usamos :root, que es una PSEUDOCLASE, y cuyo
+valor es mayor en jerarquía que la etiqueta HTML
+del propio documento.
+
+------------------VARIABLES----------------
+*/
+
+:root {
+  --color-principal-anaranjado: #ff914d;
+  --color-principal-turquesa: #73c1cb;
+  --color-secundario-turquesaclaro: #bccfd2;
+  --pie-bg: var(--btn-bg-principal);
+  --ofertas-titulo-bg: var(--btn-bg-principal);
+  --secciones-titulos-bg: var(--btn-bg-principal);
+  --redes-bg-hover: var(--btn-bg-principal);
+  --font-size-h1: 1rem;
+  --font-size-h3: 2rem;
+  --font-size-h2: 3rem;
+  --font-size-h4: 0.9rem;
+  --font-size-p: 1.1rem;
+  --body-bg: #ffede5;
+  --color-blanco: #f9f9f9;
+  --color-negro: #121212;
+  --line-height: 130%;
+  --font-family-poppins: poppins;
+  --font-family-amsterdam: amsterdam;
+  --box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/*------------------VARIABLES----------------*/
+p {
+  font-size: var(--font-size-p);
+}
+h1 {
+  font-size: var(--font-size-h1);
+}
+h2 {
+  font-size: var(--font-size-h2);
+}
+h3 {
+  font-size: var(--font-size-h3);
+}
+h4 {
+  font-size: var(--font-size-h4);
+}
+h2,
+h3 {
+  font-family: var(--font-family-amsterdam);
+  line-height: 200%;
+  font-weight: bold;
+}
+h1,
+h4,
+p,
+a {
+  font-family: var(--font-family-poppins);
+}
+/*------------------GRID BODY ESTRUCTURA GENERAL----------------*/
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 65px repeat(16, 1fr);
+  background-color: var(--body-bg);
+}
+
+/*------------------HEADER----------------*/
+header.encabezado {
+  grid-row: 1/2;
+  grid-column: 1/4;
+  z-index: 1;
+}
+/*------------------HEADER----------------*/
+
+/*------------------NAV----------------*/
+nav.navegacionEncabezado {
+  display: grid;
+  grid-template-areas: "abre logo carrito";
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: var(--body-bg);
+  box-shadow: var(--box-shadow);
+}
+
+nav a img.imgIcono, /*Damos estilo a los botones e iconos*/
+button img.imgIcono {
+  width: 24px;
+  padding: 8px;
+}
+
+nav button.btnAbreMenu {
+  grid-area: abre;
+}
+
+nav button.btnCierraMenu {
+  grid-area: cierra;
+  display: none;
+}
+a.enlaceLogo:nth-child(3) {
+  height: 48px;
+  grid-area: logo;
+}
+a.enlaceCarrito:nth-child(5) {
+  grid-area: carrito;
+}
+
+.imgLogoNav {
+  height: inherit;
+}
+nav ul.listaMenuEncabezado {
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  padding: 4rem;
+  flex-direction: column;
+  gap: 2rem;
+  position: absolute;
+  top: 0rem;
+  left: 0rem;
+  width: 100px;
+  bottom: 0;
+  background-color: var(--color-blanco);
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+}
+nav ul.listaMenuEncabezado li a {
+  color: var(--color-negro);
+}
+/*------------------CLASES JS----------------*/
+/*Clases que se agregan con JS
+a las clases correspondientes de la nav
+para hacerla visible o no cuando
+el usuario haga click*/
+.listaMenuEncabezado.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.btnCierraMenu.visible {
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+/*------------------CLASES JS----------------*/
+
+/*##### NAV #####*/
+
+/*##### MAIN DESTACADOS CONTENEDOR #####*/
+
+main.destacadosMain {
+  grid-row: 2/3;
+  grid-column: 1/4;
+}
+
+h1.tituloPromo {
+  padding: 8px;
+  text-align: center;
+  background-color: var(--color-principal-anaranjado);
+}
+
+/*---SECCIÓN BANNER LOGO ---*/
+
+section.bannerLogo {
+  min-height: 200px;
+  max-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../images/banner-fondo.png);
+  background-size: cover;
+}
+
+.imgLogoBanner {
+  height: 100px;
+}
+
+/*---SECCIÓN BANNER LOGO ---*/
+
+/*---SECCION PRODUCTOS DESTACADOS INTERACTIVO ---*/
+
+section.productoInteractivo {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 750px;
+}
+
+section h3.nombreProducto {
+  text-align: center;
+  color: var(--color-principal-anaranjado);
+}
+section article.contenedorProducto {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: var(--color-principal-turquesa);
+  box-shadow: var(--box-shadow);
+}
+
+article img.productoPrincipal {
+  height: 230px;
+}
+
+ol.listaMiniaturas {
+  margin-top: 32px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+ol li button.btnMiniatura {
+  background-color: var(--color-principal-turquesa);
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  box-shadow: var(--box-shadow);
+}
+
+button img.cupcake.miniatura {
+  height: 48px;
+}
+section .descripcionProducto {
+  text-align: center;
+  width: 350px;
+  line-height: 110%;
+  letter-spacing: 1px;
+}
+/*##### MAIN DESTACADOS CONTENEDOR #####*/
+
+/*estilo general para botones principales*/
+.button {
+  margin-top: 8px;
+  /*boton 32px mobile*/
+  background-color: var(--color-principal-anaranjado);
+  font-size: 16px;
+  font-family: var(--font-family-poppins);
+  cursor: pointer;
+  border-radius: 15px;
+  width: 192px;
+  height: 48px;
+  box-shadow: var(--box-shadow);
+}
+
+.tituloSeccion {
+  background-color: #ff914d;
+  font-family: amsterdam;
+}
+
+/*##### BANNER DIVIDE SECCIÓN #####*/
+.divisorSeccion {
+  grid-column: 1/4;
+  grid-row: 3/4;
+  height: 100px;
+}
+
+div img.cupcakesFondo {
+  width: 100%;
+  background-image: url(../images/background-divisor.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 1;
+}
+
+div .divBannerTienda {
+  margin-top: 120px;
+  height: 800px;
+  content: "fotografía de panadería, vista general de tartas con frutillas y facturas surtidas";
+  background-image: url(../images/general-panaderia.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  opacity: 0.5;
+  z-index: 0;
+}
+/*##### BANNER DIVIDE SECCIÓN #####*/
+
+/*OFERTAS*/
+section.carrouselOfertas {
+  grid-column: 1/4;
+  position: relative;
+  width: 100%;
+}
+.carrouselOfertas .tituloCategoria {
+  background-color: orange;
+  text-align: center;
+  width: 100%;
+  font-size: 3rem;
+}
+.galeriaCarousel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 600px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.galeriaCarousel article {
+  margin-left: 60px;
+}
+
+.slider-button {
+  background-color: #993030;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  top: 350px;
+  position: absolute;
+  z-index: 1;
+}
+
+.slider-button.prev-button {
+  left: 16px;
+}
+.slider-button.next-button {
+  right: 16px;
+}
+
+.carrouselOfertas .contenedorOfertas {
+  display: flex;
+  width: calc(100% / 3);
+}
+
+.productoOferta {
+  margin: 32px;
+  box-shadow: 1px 1px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  padding: 32px;
+  background-color: #f9f9f9;
+}
+.nombreOferta {
+  text-align: center;
+}
+.nombreOferta .nombreResalta {
+  color: red;
+}
+.productoOferta img.producto {
+  width: 150px;
+}
+.infoProducto {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+.muestraColores {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 25px;
+  gap: 16px;
+}
+.colorOferta {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e6a26f;
+}
+.ofertaPrecio {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.precios {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnAñadirCarrito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  box-shadow: 1px 1px 0px 0px;
+  background-color: orange;
+}
+
+.iconoAñadir {
+  height: 20px;
+}
+
+@media (max-width: 900px) {
+  .carrouselOfertas .contenedorOfertas {
+    width: calc(100% / 2);
+    transform: scale(120%);
+  }
+}
+
+@media (max-width: 550px) {
+  .carrouselOfertas .contenedorOfertas {
+    width: 100%;
+  }
+}
