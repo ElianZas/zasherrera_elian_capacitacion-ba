@@ -82,6 +82,8 @@ h3 {
 }
 h4 {
   font-size: var(--font-size-h4);
+  line-height: 110%;
+  letter-spacing: 1px;
 }
 h2,
 h3 {
@@ -99,7 +101,7 @@ a {
 body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 75px repeat(16, 1fr);
+  grid-template-rows: 75px 1fr 1fr auto auto auto auto auto auto; /*8 columnas, 9 lineas*/
   background-color: var(--body-bg);
 }
 
@@ -285,8 +287,9 @@ section .descripcionProducto {
 }
 
 .tituloSeccion {
-  background-color: #ff914d;
+  background-color: var(--color-principal-anaranjado);
   font-family: amsterdam;
+  height: 100px;
 }
 
 /*##### BANNER DIVIDE SECCIÓN #####*/
@@ -318,15 +321,17 @@ div .divBannerTienda {
 }
 /*##### BANNER DIVIDE SECCIÓN #####*/
 
-/*OFERTAS*/
+/*##### OFERTAS CARROUSEL #####*/
 section.carrouselOfertas {
   grid-column: 1/4;
   position: relative;
+  grid-row: 4/5;
   width: 100%;
 }
 .carrouselOfertas .tituloCategoria {
   background-color: var(--color-principal-anaranjado);
   text-align: center;
+  box-shadow: var(--box-shadow);
   width: 100%;
 }
 .galeriaCarousel {
@@ -375,7 +380,7 @@ section.carrouselOfertas {
   border-radius: 15px;
   justify-content: space-between;
   padding: 32px;
-  background-color: #f9f9f9;
+  background-color: var(--color-blanco);
   height: 350px;
   width: 200px;
 }
@@ -435,7 +440,9 @@ section.carrouselOfertas {
   box-shadow: var(--box-shadow);
   background-color: var(--color-principal-anaranjado);
 }
+/*##### OFERTAS CARROUSEL #####*/
 
+/*##### CARRITO COMPRAS #####*/
 .carritoListado.no-visible {
   display: none;
 }
@@ -488,6 +495,245 @@ section.carrouselOfertas {
   margin: 8px;
   padding: 8px;
 }
+/*##### CARRITO COMPRAS #####*/
+
+/*##### SECCION INGREDIENTES #####*/
+section.ingredientesSeccion {
+  grid-column: 1/4;
+  height: 100%;
+  grid-row: 5/6;
+} /*Damos el mismo color de fondo a los títulos NUESTROS INGREDIENTES y REDES*/
+.ingredientesSeccion .tituloCategoria {
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-principal-turquesa);
+}
+.contenedorIngredientes {
+  min-height: 600px;
+  height: 800px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.ing {
+  padding: 1rem;
+}
+/*##### SECCION INGREDIENTES #####*/
+
+/*##### REDES#####*/
+
+.redesSeccion {
+  grid-column: 1/4;
+  grid-row: 6/7;
+  display: flex; /*usamos flex nuevamente para que sea más sencillo alinear los elementos en una misma*/
+  flex-direction: column;
+  height: 100%;
+}
+.redesSeccion .tituloCategoria {
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-principal-turquesa);
+}
+.contenedorRedes {
+  display: flex; /*usamos flex nuevamente para que sea más sencillo alinear los elementos en una misma*/
+  align-items: center;
+  justify-content: space-evenly;
+  height: 200px;
+}
+
+.iconos-redes {
+  display: flex;
+  justify-content: center;
+  transform: scale(2.5);
+  box-shadow: var(--box-shadow);
+  transition: 0.15s ease-in;
+  border-radius: 10px;
+  animation-name: animacionredes;
+  background-color: var(--color-secundario-turquesaclaro);
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+.iconos-redes:hover {
+  transform: scale(2.9);
+}
+@keyframes animacionredes {
+  0% {
+    rotate: 20deg;
+  }
+  50% {
+    rotate: -20deg;
+  }
+  100% {
+    rotate: 20deg;
+  }
+}
+.bi-facebook,
+.bi-whatsapp,
+.bi-instagram {
+  border-radius: 10px;
+  padding: 8px;
+}
+.bi-facebook {
+  fill: #7795bd;
+  transition: 0.2s ease-in; /*para los archivos svg podemos usar la propiedad fill, que funcionará como la propiedad COLOR.*/
+}
+.bi-instagram {
+  fill: #c96099;
+  transition: 0.2s ease-in;
+}
+.bi-whatsapp {
+  fill: #6db688;
+  transition: 0.2s ease-in;
+}
+.bi-facebook:hover,
+.bi-instagram:hover,
+.bi-whatsapp:hover {
+  fill: var(--color-principal-anaranjado);
+}
+/*##### REDES #####*/
+
+/*##### NEWSLETTER#####*/
+
+/*Le aplicamos estilos a nuestro formulario*/
+.newsletterSeccion {
+  grid-column: 1/4;
+  grid-row: 7/8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-blanco);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  z-index: 1;
+}
+.newsletterSeccion .tituloCategoria {
+  text-align: center;
+}
+.form-contenedor {
+  text-align: center;
+  display: flex; /*acomoadamos los elementos dentro del contenedor form en filas y los alineamos*/
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 16px; /*determinamos un espaciado entre las filas (hay tantas filas como elementos)*/
+}
+
+.input-email {
+  width: 70%;
+  margin: 16px 0px 16px 0px; /*le damos un espaciado por fuera de nuestro input, donde se ingresará el email.
+  Recordemos el orden y la dirección en el que estamos modificando cada valor :
+  arriba derecha abajo izquierda;*/
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 10px;
+  border: solid var(--color-principal-turquesa) 0.5px;
+  background-color: var(--color-secundario-turquesaclaro);
+}
+/*damos estilo al botón enviar tipo input*/
+.form-enviar {
+  border: none;
+  background-color: var(--color-secundario-turquesaclaro);
+}
+/*##### NEWSLETTER #####*/
+
+/*##### BANNER LOGO COLOR #####*/
+.bannerLogoFin {
+  grid-column: 1/4;
+  grid-row: 8/9;
+  text-align: center;
+  padding: 30px;
+  background-color: var(--color-blanco);
+}
+.bannerLogoFin img.imgLogoBanner {
+  width: 100%;
+  height: auto;
+}
+
+/*##### BANNER LOGO COLOR #####*/
+
+/*#WHATSAPP#*/
+.whatsappBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+}
+
+.whatsappBtn a {
+  border-radius: 50%;
+}
+.whatsappBtn a svg.bi-whatsapp {
+  background-color: var(--color-blanco);
+  border-radius: 30%;
+}
+
+/*##### FOOTER MAPA DEL SITIO #####*/
+footer.mapadeSitioSeccion {
+  grid-column: 1/4;
+  grid-row: 9/10;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  grid-template-rows: 2fr 0.4fr;
+  font-family: poppins;
+  align-items: center;
+  font-size: 14px;
+}
+/*SECCION FOOTER, PIE DE PAGINA*/
+footer {
+  background-color: #f9f9f9; /*estableceos un color a toda la sección FOOTER*/
+}
+.nav-contenedor-mapeo {
+  padding-bottom: 20px;
+}
+.nav-contenedor-mapeo h3 {
+  grid-row: 1/2;
+  font-size: 16px;
+  font-family: poppins;
+}
+.nav-mapa-lista,
+.nav-contactanos,
+.nav-horarios {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 10px;
+  margin: 20px;
+}
+.nav-mapa-lista li {
+  cursor: pointer;
+}
+.nav-mapa-lista li a {
+  text-decoration: none;
+}
+.link-nav a {
+  text-decoration: none;
+  color: #121212;
+}
+
+/*Damos un color, forma y tamaño a nuestra etiqueta A, que se comportará como un botón*/
+.btnSubir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-principal-turquesa);
+  margin-bottom: 2rem;
+}
+.btnSubir img {
+  width: 20px;
+  height: 20px;
+}
+.btnSubir:hover {
+  background-color: #bccfd2;
+}
+
+/*##### FOOTER MAPA DEL SITIO #####*/
 
 @media (max-width: 900px) {
   .carrouselOfertas .contenedorOfertas {

@@ -1,34 +1,69 @@
+//Datos para empezar//
+
+//Javascript: es un lenguaje que se usa para aplicaciones web. No necesita compilarse y se puede visualizar sus efectos mientras estamos realizándo nuestra página.
+//Posee métodos muy útiles que son funciones asociadas a objetos. Estas se usan para hacer acciones específicas.
+
+//Variable: una variable es como una caja donde guardamos un contenido x. Este contenido x es un dato que puede ser de tipo: numérico (entero o decimal), cadena de texto (string) o booleano (falso o verdadero), entre otros.
+//Esta caja tendrá: un nombre (por el cual la identificaremos), un valor (su contenido), y un tipo de dato (su "especie"). Por ejemplo: de un auto podemos extraer las siguientes variables: nombre (fiat), puertas (4), patente (1992);
+//Para DECLARAR una variable podemos usar: let o const.
+//Let - palabra clave que nos permite actualizar el contenido de nuestra variable las veces que queramos.
+//Const - palabra clave que nos permite mantener fijo el contenido de nuestra variable.
+
+/*##Para ampliar: https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Grammar_and_types##*/
+
+//Array: un array es una lista/secuencia ORDENADA de cajas del mismo tipo o diferentes.
+//Siguiendo el ejemplo anterior, podríamos tener un array de autos de una misma marca o de distintas marcas. autosFiat = [auto1, auto2, auto3];
+//Cada auto estaría guardado en una posición de nuestra lista, la cual comienza desde la posición 0. Entonces en cada posición podemos guardar un elemento.
+//Pueden almacenar variables u objetos.
+//Algunos métodos de array son: push (agregar), pop (eliminar). Agrega o elimina elementos dentro de un array.
+
+//Objeto: un objeto es similar a una variable pero la diferencia es que, en una variable podemos guardar solamente un dato. En cambio, en un objeto podemos guardar más de un dato, por ejemplo: tenemos las variables de nuestro auto (características o propiedades), las cuales son de distinto tipo (texto y números). Si queremos guardar varios autos con el mismo tipo de variable. Entonces crearemos un objeto por cada auto, auto1 = nombre, puertas, patente; auto2 = nombre, puertas, patente.
+
+//Función: una función es un bloque de código. Digamos que es una propiedad que podemos crear para nuestras cajas, en donde definiremos que nuestra caja o el contenido de ella pueda realizar una acción o serie de acciones. Es reutilizable, es decir, que podemos llamarla las veces que sean necesarias. Nos ayudan economizar nuestro código. Generalmente las funciones tienen un dato de entrada, llamado parámetro, aunque no es obligatorio y depende de qué queramos hacer.
+//En caso de darle un parámetro, este dato es el que le daremos a la función para que lo utilice y haga algo con él. Esta función puede devolver un resultado.
+//Las funciones de tipo flecha son una sintaxis más concisa.
+
+//DOM (DOCUMENT OBJET MODEL): /*--Recomiendo la extensión HTML TREE GENERATOR que nos ayuda a ver nuestro documento HTML en una estructura de tipo árbol, mucho más clara y limpia--*/
+//El DOM es una representación de la estructura jerárquica de nuestro documento HTML.
+//Es como tener un modelo de nuestra página y que nos ayuda a hacerla interactiva.
+//Si tenemos nuestra panadería con distintas secciones, estas se mostrarán de forma jerárquica, las secciones como "hermanas", y su interior como hijas de esas secciones, y así sucesivamente.
+//Gracias a esta estructura podemos acceder a elementos de nuestro documento HTML y cambiarlos ya sea añadiéndoles otros elementos, obteniendo sus atributos, etc. Podemos incluso modificar estilos, eliminar o agregar clases.
+//Una de las características más importantes es que podemos usar los eventos que nos provee, estos eventos sirven para detectar las acciones que hace el usuario en nuestra página, como detecar el click, un arrastre, o tecleo, y demás. Con estos datos podemos hacer nuestra página dinámica, darle más vida e interacción.
+//Finalmente es muy útil para validar formularios, ya que podemos analizar los datos que ingrese una persona y corroborar si son correctos, y actualizar de esta forma nuestra página usando el DOM.
+
 /*########----MENU HAMBURGUESA-----#########*/
 
-/*Creamos variables constantes para guardar
-el valor que estamos "llamando" a través del
-DOM. 
-Usamos document.querySelector, para seleccionar
-y decirle a JS que busque dentro de nuestro
-documento HTML aquellos selectores que contengan
-el nombre que indicamos. En este caso
-le pedimos que encuentre los ID respectivos
-para cada uno de los elementos*/
-const menu = document.querySelector("#menu-nav");
-const abrir = document.querySelector("#abrir");
-const cerrar = document.querySelector("#cerrar");
+//Necesitamos que al hacer CLICK sobre el ícono del menú ocurran dos cosas:
+//1- nos muestre el menú 2- oculte el menú
+//Nos vamos a ayudar con una clase "visible" creada en CSS.
 
-/*Dos formas de escribir una función*/
-abrir.addEventListener("click", abre);
+//Creamos las tres variables: menu, abrir, cerrar.
+const menu = document.querySelector("#menu-nav"); //guardamos y seleccionamos el elemento con ID menu-nav
+const abrir = document.querySelector("#abrir"); //guardamos y seleccionamos el elemento con ID #abrir
+const cerrar = document.querySelector("#cerrar"); //guardamos y seleccionamos el elemento con ID #cerrar
+
+/*Creamos variables constantes para guardar el valor que estamos "llamando" a través del DOM. 
+Usamos document.querySelector, para seleccionar y decirle a JS que busque dentro de nuestro documento HTML aquellos selectores que contengan el nombre que indicamos. En este caso le pedimos que encuentre los ID respectivos para cada uno de los elementos*/
+
+/*###Dos formas de escribir una función###*/
+/*#1#*/
+abrir.addEventListener("click", abre); //al hacer click en el ícono del menú se ejecuta la función abre
+//hacemos que se muestre el menú al hacer click
 function abre() {
-  menu.classList.add("visible");
-  cerrar.classList.add("visible");
+  menu.classList.add("visible"); //añade la clase "visible" a nuestro menu-nav
+  cerrar.classList.add("visible"); //añade la clase "visible" a nuestro ícono de cierre del menú
 }
-
-/*Ahorramos lineas, usamos una función
-que no hace falta ponerle un nombre
-es una funcion rapida*/
+//hacemos que se cierre el menú al hacer click en el ícono de cierre del menú
+/*#2#*/
+/*Función de tipo flecha*/
 cerrar.addEventListener("click", () => {
   menu.classList.remove("visible");
   cerrar.classList.remove("visible");
 });
 
 /*########----PRODUCTOS DESTACADOS CAMBIAN AL HACER CLICK EN SUS MINIATURAS-----#########*/
+
+/*Al hacer click en cada miniatura cambiará el producto visualizado, su nombre y su descripción*/
 
 //Creamos un array, que lo pensamos como una lista ordenada de elementos. Cada elemento ocupará una posición.
 //En este caso guardaremos objetos dentro de este array, entonces cada objeto va a ocupar un espacio.
@@ -38,7 +73,6 @@ cerrar.addEventListener("click", () => {
 //Cada objeto tendrá los siguientes atributos de: nombre, imagen y alt.
 //En estos objetos guardamos la información que corresponde a cada producto.
 //Al usar un array evitamos la repetición de código.
-//Objeto: en este caso cada objeto representa un producto diferencia. Es una estructura que nos permite guardar y organizar datos como propiedades o valores. Es como una un rompecabeza que contiene distintas piezas en su interior(de información), similar a los atributos de un elemento HTML como alt, ref, etc.
 const productos = [
   {
     nombre: "Frambuesa Tentadora",
@@ -63,8 +97,7 @@ const productos = [
   },
 ];
 
-//Seleccionamos los elementos de nuestro documento HTML
-//a través del uso del DOM.
+//Seleccionamos los elementos de nuestro documento HTML a través del uso del DOM.
 //Guardamos la seleccion de cada producto en su correspondiente constante.
 const producto1_btn = document.querySelector("#producto1");
 const producto2_btn = document.querySelector("#producto2");
@@ -77,26 +110,14 @@ producto1_btn.addEventListener("click", () => mostrarProducto(0));
 producto2_btn.addEventListener("click", () => mostrarProducto(1));
 producto3_btn.addEventListener("click", () => mostrarProducto(2));
 
-/*Cuando hacemos click en el botón del producto 1 llamamos a la función
-mostrarProducto con el índice 0. Este corresponde al primer producto
-que se encuentra en nuestro array "productos"*/
-/*Le indicamos un parámetro con el que trabajará nuestra función, 
-"índice", con este le diremos qué producto queremos que se muestre.*/
+//Cuando hacemos click en el botón del producto 1 llamamos a la función mostrarProducto con el índice 0. Este corresponde al primer producto que se encuentra en nuestro array "productos"
+//Le indicamos un parámetro con el que trabajará nuestra función, "índice". Con este le diremos qué producto queremos que se muestre.
 function mostrarProducto(indice) {
   imgProducto.src = productos[indice].imagen; //actualizamos la ruta de la imágen para cambiarla por la que corresponda según la posición en la que se encuentre el producto dentro del array
   imgProducto.alt = productos[indice].alt; //actualizamos el atributo "ALT" de la imágen para modificar la descripción de nuestra imágen
   nombreProducto.innerHTML = productos[indice].nombre; //actualizamos el nombre del producto a través de la propiedad innerHTML. Esta propiedad nos permite acceder o modificar el contenido HTML, haciendo referencia a todo lo que se encuentra dentro de las etiquetas que componen nuestra web.
   descripcion_producto.innerHTML = productos[indice].parrafo;
 }
-
-/*
-producto2_btn.onclick = function () {
-  imgProducto.src = "./images/cupcake-surtido.png";
-};
-producto3_btn.onclick = function () {
-  imgProducto.src = "./images/cupcake-oreo.png";
-};
-*/
 
 /*########----CARROUSEL CON CONTROLES (FLECHAS)-----#########*/
 
@@ -134,16 +155,23 @@ prevBtn.addEventListener("click", () => {
 
 // Función que realiza el desplazamiento de la galería
 function scrollGaleria() {
-  // Calcula la cantidad de desplazamiento basado en el índice actual y el ancho de los artículos
+  // Calcula la cantidad de desplazamiento basado en el índice actual y el ancho de los artículos con la propiedad "Width" (se obtiene el anacho del elemento del DOM)
   const tamañoScroll = posicion * cardsProductosWidth;
 
-  // Aplica el desplazamiento al atributo scrollLeft de la galería
-  galeria.scrollLeft = tamañoScroll;
+  galeria.scrollLeft = tamañoScroll; //scrollLeft sirve para establecer la cantidad de desplazamiento horizontal del elemento (es una propiedad de JS)
 }
 
 /*########----CARRITO DE COMPRAS USANDO CLASES Y IDS-----#########*/
 
-//Carrito de compra
+/*Necesitamos:
+Detectar qué producto se quiso agregar al hacer click en el botón de añadir al carrito
+Obtener sus datos y guardarlos para sumarlos a nuestro carrito de compras
+Que al hacer click en el carrito nos muestre el contenido
+Que hacer click en el boton de añadir el producto se guarde
+Que se sume cada producto al añadirlo al carrito
+Que se sume el total del precio de cada uno de los productos añadidos
+Que al hacer click en el botón eliminar del producto correspondiente se elimine el mismo*/
+
 const listaProductos = document.querySelector(".galeriaCarousel");
 //Selecciona nuestra galeria de productos
 const btnCarrito = document.querySelector("#btn-carrito");
@@ -163,18 +191,21 @@ const carritoContenedor = document.querySelector(
 
 btnCarrito.addEventListener("click", () => {
   //llamamos al método click de js para usarlo con el botón del carrito.
-  carritoContenedor.classList.toggle("no-visible"); //metodo toggle sirve para cambiar el estao de la visibilidad de un elemento HTML.
+  carritoContenedor.classList.toggle("no-visible"); //metodo toggle sirve en este caso para cambiar el estado de visibilidad de un elemento HTML.
 });
-//Al hacer click en el botón del carrito se quitara la clase novisible y se mostrará
+//Al hacer click en el botón del carrito se quitara la clase novisible y se mostrará, al hacer click nuevamente se volverá a colocar.
 
 //Llamamos a un evento que aplicaremos a la lista de productos al hacer click
 listaProductos.addEventListener("click", (e) => {
-  //le decimos a la lista de productos que seleccionamos (productos que tenemos en la galeria) que acción va a realizar cuando se haga click dentro de este elemento
+  //le decimos a la lista de productos que que haga algo cuando se haga click dentro de este elemento
+
+  //COMENTARIOS
   //console.log(e.target) //Comprobamos que al hacer click en x elemento nos devuelva su estructura HTML
   //console.log(e.target.classList.contains("precioActual")); //Comprobamos si el elemento en el que damos click tiene la clase precio nos devuelve un valor TRUE de tipo booleano
   //console.log(e.target.classList.contains("btn-agregar-carrito"));//comprobamos que al presionar el boton de agregar al carrito nos tome un valor verdadero TRUE.
   //con e.target podemos saber donde estamos haciéndo click
-  //hacemos una condición
+
+  //Usamos una condición
   if (e.target.classList.contains("btn-agregar-carrito")) {
     //Vertificamos si el elemento clickeado tiene la clase correspondiente. Si es así nuestra condición se cumple e ingresa al resto del código
     const producto = e.target.closest(".contenedorOfertas"); //e.target sirve para detectar que elemento fue clickeado y con el método closest() tendremos disponibles los elementos más cercanos que tenga la clase contenedorOfertas
@@ -201,17 +232,16 @@ const actualizarCarrito = () => {
   //Función para actualizar el carrito de la página
   filaProducto.innerHTML = ""; //Limpiamos el contenido que haya en nuestro HTML dentro del contenedor de nuestra lista de productos.
   //Creamos variables de tipo let ya que necesitamos que sus valores se actualicen.
-  let total = 0;
+  let total = 0; //Creamos variable para calcular el total del carrito precio
   let totalCarritoProductos = 0;
   if (totalProductos.length === 0) {
+    //Si no hay productos en el carrito, nos muestra un mensaje
     valorTotal.innerHTML = "";
-    //si no hay productos en el carrito, muestra un mensaje de carrito vacío
-    filaProducto.innerHTML = "<p class='textoVacio'>El carrito está vacío</p>";
+    filaProducto.innerHTML = "<p class='textoVacio'>El carrito está vacío</p>"; //Agregamos un elemento HTML a nuestra estructura HTML
   } else {
-    //Creamos variable para calcular el total del carrito precio
-
+    //Si HAY productos recorre nuestro array totalProductos.
     totalProductos.forEach((producto) => {
-      const contenedorProducto = document.createElement("div");
+      const contenedorProducto = document.createElement("div"); //crea un nuevo contenedor de producto para el carrito
       contenedorProducto.innerHTML = `
       <div class="infoCarritoProducto">
         <p class="tituloCarritoProducto">${producto.nombre}</p>
@@ -219,15 +249,15 @@ const actualizarCarrito = () => {
         <span class="precioProductoCarrito">${producto.precio}</span>
       </div>
       <button class="btn-eliminar-producto">X</button>`; // Agregamos el botón eliminar
-      filaProducto.appendChild(contenedorProducto);
-      total = total + parseInt(producto.cantidad * producto.precio.slice(1));
+      filaProducto.appendChild(contenedorProducto); //agregamos un elemento HTML como hijo de otro elemento HTML existente que guardamos antes en filaProducto.
+      total = total + parseInt(producto.cantidad * producto.precio.slice(1)); //calculamos el subtotal para este producto y actualizamos los totales
       totalCarritoProductos = totalCarritoProductos + producto.cantidad;
     });
 
     //Hacemos visible la información que procesamos en nuestro HTML con la propiedad innerHTML del DOM. Lo que hace es establecer la sintaxis de nuestro HTML, permitiéndonos reemplazar el contenido que tenemos de base con el contenido que generamos a través de JS.
-    valorTotal.innerHTML = `$${total}`; //Hacemos visible el valor total de la suma de los productos y la cantidad de productos añadidos al carrito
+    valorTotal.innerHTML = `$${total}`; //Hacemos visible el valor total de la suma de los productos
   }
-  contadorProductos.innerHTML = totalCarritoProductos;
+  contadorProductos.innerHTML = totalCarritoProductos; //Modificamos el contenito HTML de este elemento para reflejar la cantidad total de productos en nuestro carrito
 };
 
 //Al hacer click en el boton para eliminar el producto, se borrará el producto en cuestión
@@ -238,14 +268,26 @@ filaProducto.addEventListener("click", (e) => {
       //guardamos el contenido del elemento seleccionado que contenga la clase correspondiente, en la variable nombreProductoEliminar
       ".tituloCarritoProducto"
     ).textContent;
-    eliminarProducto(nombreProductoEliminar); //Entonces al hacer click en el botón eliminar, si se cumple la condición se ejecutará una función que tomará como parámetro el contenido que guardamos en la variable creada nombreProductoEliminar.
+    eliminarProducto(nombreProductoEliminar); //En resumen, al hacer click en el botón eliminar, si se cumple la condición se ejecutará una función que tomará como parámetro el contenido que guardamos en la variable creada nombreProductoEliminar.
   }
 });
 function eliminarProducto(nombre) {
   //Tomamos el parámetro anterior y definimos qué acción realizará nuestra función
   totalProductos = totalProductos.filter(
     //Usamos el método "filter" en el arreglo "totalProductos"
-    (producto) => producto.nombre !== nombre //este método crea un nuevo arreglo con todos los elementos que cumplan la condición. En este caso filtramos los productos para excluir los productos que tengan el mismo contenido (nombre) dentro de la variable constante que paasamos como parámetro antes.
+    (producto) => producto.nombre !== nombre //este método crea un nuevo arreglo con todos los elementos que cumplan la condición. En este caso filtramos los productos para excluir los productos que tengan el mismo contenido (nombre) dentro de la variable constante que pasamos como parámetro antes.
   );
   actualizarCarrito(); //Actualizamos el carrito con el producto eliminado
 }
+
+// Obtenemos al botón "Subir", en vez de usar queryselector usamos elementobyid, la diferencia entre ambos es que uno nos deja seleccionar cualquier tipo de atributo del elemento sea clase o id, y el elementbyid solo nos deja seleccionar elementos que tengan id (recordar que los ids son únicos y es una buena práctica utilizarlos una vez por elemento, también nos ayuda a no repetir identificadores)
+const btnSubir = document.getElementById("btn-subir");
+
+// Obtenemos el elemento "encabezado"
+const encabezado = document.getElementById("encabezado");
+
+// Agregamos un evento de clic al botón "Subir"
+btnSubir.addEventListener("click", function () {
+  // Desplazamos la página hacia el encabezado mediante el método scrollIntoView
+  encabezado.scrollIntoView({ behavior: "smooth" }); //hacemos que el scroll tenga el comportamiento de "smooth" es decir que suavice el movimiento
+});
