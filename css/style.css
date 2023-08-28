@@ -98,10 +98,14 @@ a {
   font-family: var(--font-family-poppins);
 }
 /*------------------GRID BODY ESTRUCTURA GENERAL----------------*/
+
+/*--Usamos la estructura de GRID para determinar que el body funcione dentro del marco de
+filas y columnas. De esta manera, luego a cada sección le indicamos cuántas filas y cuántas columnas
+pueden ocupar.--*/
 body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 75px 1fr 1fr auto auto auto auto auto auto; /*8 columnas, 9 lineas*/
+  grid-template-rows: 75px 1fr 1fr auto auto auto auto auto auto; /*8 columnas, 9 lineas*/ /*Definimos valores fijos para algunas filas y para otras dejamos que se ajusten automáticamente al contenido de cada sección que ocupe cada fila.*/
   background-color: var(--body-bg);
 }
 
