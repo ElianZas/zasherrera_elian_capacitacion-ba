@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+  <!--le indicamos al navegador que el lenguaje que usaremos
+será español-->
   <head>
+    <!--Configuración de nuestro documento HTML-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Borcelle Pastelería&Panadería</title>
+    <!-- Se hará una Landing Page utilizando HTML semantico y propiedades de CSS.
+    Cada sección será maquetada, construida, a traves del metodo Flexbox o Grid-->
+    <title>Borcelle Pastelería&Panadería LandingPage</title>
+    <!--Nombre de la tienda-->
+    <!--Para identificar rapidamente de qué se trata nuestra página-->
     <link
       href="https://fonts.cdnfonts.com/css/the-amsterdam"
       rel="stylesheet"
     />
+    <!--Vinculamos nuestro doc HTML con una fuente externa que queremos aplicar a través de la etiqueta LINK, le indicamos la dirección en el atributo href-->
     <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet" />
     <link rel="stylesheet" href="./css/reset.css" />
+    <!--Vinculamos nuestra hoja de estilos reset con nuestro HTML para resetear los valores por defecto del documento HTML-->
     <link rel="stylesheet" href="./css/style.css" />
+    <!--Vinculamos las hojas de estilo con nuestro HTML para que detecte el diseño que le damos a nuestros elementos. Esto lo hará mediante clases o IDs-->
   </head>
   <body>
+    <!--Etiqueta BODY, esta etiqueta represeta el cuerpo de nuestro sitio web, 
+    contendrá todo el resto de etiquetas, elementos, que usemos. Si realizamos alguna
+  modificación al body se aplicará a toda la página, a menos que le demos identificadores
+  a cada etiqueta de tipo  CLASS o ID.
+  Cuando empecemos a darle color y otras propiedades empezaremos a "llamar" a los atributos que
+  hayamos usado para identificar a cada una de ellas que queramos personalizar. 
+  ID-El atributo ID NO se puede reutilizar, solo se usa una vez por etiqueta y el nombre
+  de este no puede ser igual a otro. Se escribe con un # adelante del nombre.
+  CLASS-El atributo CLASS se puede reutilizar todas las veces que deseemos, podemos
+  darle un color a los botones y reutilizarla en todos los botones que lleven esas propiedades.
+  Si queremos cambiar y hacer las clases para cada etiqueta personalizadas debemos cambiar
+  su nombre. Se escribe con un . adelante del nombre-->
     <!--#HEADER MENÚ DE NAVEGACIÓN#-->
     <header class="encabezado" id="encabezado">
+      <!-- El encabezado sección contiene el logotipo y el título -->
       <nav class="navegacionEncabezado">
+        <!-- La sección de navegación contiene el menú con opciones -->
         <button class="btnAbreMenu" id="abrir">
+          <!--Usamos botones, para luego darle funcionalidad con javascript, también les asignamos un ID (identificador único). Los ID solo pueden aparecer una vez por elemento-->
           <img
             src="./assets/icono-menu.svg"
             class="imgIcono abre"
             alt="icono de menu de la página, abre"
           />
+          <!--Etiqueta imágen para adjuntar imágenes que tenemos almacenadas a través del atributo src, o bien podríamos colocar una URL. También indicamos en su atributo ALT la descripción de la imágen para mejorar la accesibilidad-->
         </button>
         <button class="btnCierraMenu" id="cerrar">
           <!--Cambié los botones de la página por la etiqueta button en vez de la etiqueta A, ya que estos
@@ -72,12 +98,23 @@
           </div>
           <div class="cantidadproductos" id="contador-productos"></div>
         </div>
+        <!--div de carrito, el div lo usamos para como división dentro de una sección, en este caso lo usamos para separar el resto de elementos de nuestro carrito que estará fuera del flujo de nuestro maquetado y solo aparecerá cuando se haga click en el botón del carrito de compras-->
       </nav>
     </header>
     <!--#MAIN PRODUCTOS DESTACADOS#-->
+    <!--Etiqueta MAIN, en ella colocamos todo el contenido que consideremos
+      que es lo más importante de nuestra Landing Page, es decir, aquello que queremos que el usuario
+      vea y capte su atención.
+      En este caso colocaremos una muestra de productos, algo asi como una exhibición de productos.-->
     <main class="destacadosMain">
       <h1 class="tituloPromo">¡Mirá nuestras promos! 30% OFF</h1>
-
+      <!--Etiqueta H1, existen varias etiquetas para nuestros
+        títulos o subtítulos, y van del H1 al H6. En este caso, en H1 colocaremos el texto que sea más importante de 
+        nuestra página-->
+      <!-- Dentro de nuestra etiqueta main entinces pondremos etiquetas SECTION.
+      Etiqueta SECTION. Como su nombre lo indica representa las secciones qur tiene una pagina web.
+      Podemos usarla dentro del main como por fuera tambien para subdividr nuestro contenido principal,
+      y el resto del contenido de la página-->
       <section class="bannerLogo">
         <img
           src="./images/logo-negro-nav.png"
