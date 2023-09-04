@@ -281,7 +281,7 @@ function eliminarProducto(nombre) {
 }
 
 // Obtenemos al botón "Subir", en vez de usar queryselector usamos elementobyid, la diferencia entre ambos es que uno nos deja seleccionar cualquier tipo de atributo del elemento sea clase o id, y el elementbyid solo nos deja seleccionar elementos que tengan id (recordar que los ids son únicos y es una buena práctica utilizarlos una vez por elemento, también nos ayuda a no repetir identificadores)
-const btnSubir = document.getElementById("btn-subir");
+const btnSubir = document.querySelector("#btn-subir");
 
 // Obtenemos el elemento "encabezado"
 const encabezado = document.getElementById("encabezado");
@@ -289,5 +289,5 @@ const encabezado = document.getElementById("encabezado");
 // Agregamos un evento de clic al botón "Subir"
 btnSubir.addEventListener("click", function () {
   // Desplazamos la página hacia el encabezado mediante el método scrollIntoView
-  encabezado.scrollIntoView({ behavior: "smooth" }); //hacemos que el scroll tenga el comportamiento de "smooth" es decir que suavice el movimiento
+  document.documentElement.scrollTop = 0; //hacemos que el scroll tenga el comportamiento de "smooth" es decir que suavice el movimiento
 });
