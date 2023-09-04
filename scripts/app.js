@@ -28,7 +28,7 @@
 //Es como tener un modelo de nuestra página y que nos ayuda a hacerla interactiva.
 //Si tenemos nuestra panadería con distintas secciones, estas se mostrarán de forma jerárquica, las secciones como "hermanas", y su interior como hijas de esas secciones, y así sucesivamente.
 //Gracias a esta estructura podemos acceder a elementos de nuestro documento HTML y cambiarlos ya sea añadiéndoles otros elementos, obteniendo sus atributos, etc. Podemos incluso modificar estilos, eliminar o agregar clases.
-//Una de las características más importantes es que podemos usar los eventos que nos provee, estos eventos sirven para detectar las acciones que hace el usuario en nuestra página, como detecar el click, un arrastre, o tecleo, y demás. Con estos datos podemos hacer nuestra página dinámica, darle más vida e interacción.
+//Una de las características más importantes es que podemos usar los eventos que nos provee, estos eventos sirven para detectar las acciones que hace el usuario en nuestra página, como detectar el click, un arrastre, o tecleo, y demás. Con estos datos podemos hacer nuestra página dinámica, darle más vida e interacción.
 //Finalmente es muy útil para validar formularios, ya que podemos analizar los datos que ingrese una persona y corroborar si son correctos, y actualizar de esta forma nuestra página usando el DOM.
 
 /*########----MENU HAMBURGUESA-----#########*/
